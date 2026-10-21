@@ -1,0 +1,9 @@
+pub const REQUEST_SEND_FAILED: &str = "could not send pairing request";
+pub const CONFIRM_SEND_FAILED: &str = "could not send pairing confirmation";
+pub const REJECTED: &str = "pairing rejected by peer";
+pub const BAD_RESPONSE: &str = "unreadable pairing response";
+pub const WRONG_CODE: &str = "wrong pairing code";
+pub const CODE_EXPIRED: &str = "pairing code expired or too many wrong attempts";
+pub const NO_PENDING: &str = "no pairing request pending";
+pub const STORE_FAILED: &str = "could not save trusted device";
+pub const LOG_REQUESTED: &str = "pairing requested";

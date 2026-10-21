@@ -1,0 +1,11 @@
+.card {
+  background: var(--color-surface);
+  border: var(--border-hairline) solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-lg);
+}
+.title {
+  margin: 0 0 var(--space-md);
+  font-size: var(--font-size-lg);
+}

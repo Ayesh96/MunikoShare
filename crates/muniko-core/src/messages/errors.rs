@@ -1,0 +1,10 @@
+pub const IDENTITY_FAILED: &str = "Identity error";
+pub const DISCOVERY_FAILED: &str = "Discovery error";
+pub const TRANSFER_FAILED: &str = "Transfer error";
+pub const IO_FAILED: &str = "File system error";
+pub const PEER_NOT_FOUND: &str = "Device not found";
+pub const INVALID_STATE: &str = "Invalid lifecycle state";
+pub const SERVER_FAILED: &str = "Server error";
+pub const NETWORK_FAILED: &str = "Network error";
+pub const CLIPBOARD_FAILED: &str = "Clipboard error";
+pub const BOARD_FAILED: &str = "Board error";

@@ -1,0 +1,8 @@
+.code {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-code);
+  text-align: center;
+  letter-spacing: 0.2em;
+  padding: var(--space-lg) 0;
+  user-select: all;
+}

@@ -1,0 +1,9 @@
+pub const OPEN_FAILED: &str = "could not open history database";
+pub const QUERY_FAILED: &str = "history database query failed";
+pub const LOCK_POISONED: &str = "history database lock poisoned";
+pub const UNKNOWN_KIND: &str = "unknown history entry kind";
+pub const RECORD_FAILED: &str = "could not record history entry";
+pub const RECORD_TASK_FAILED: &str = "history write task failed";
+pub const EVENTS_LAGGED: &str = "history recorder missed events";
+pub const RECORDER_STARTED: &str = "history recorder started";
+pub const RECORDER_STOPPED: &str = "history recorder stopped";

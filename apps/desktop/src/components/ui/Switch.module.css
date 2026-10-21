@@ -1,0 +1,27 @@
+.switch { display: inline-flex; align-items: center; gap: var(--space-sm); font-size: var(--font-size-sm); cursor: pointer; }
+.input { position: absolute; opacity: 0; width: 0; height: 0; }
+.track {
+  position: relative;
+  flex: none;
+  width: var(--size-switch-width);
+  height: var(--size-switch-height);
+  border-radius: var(--radius-pill);
+  background: var(--color-track);
+  transition: background 0.15s;
+}
+.track::after {
+  content: "";
+  position: absolute;
+  top: calc((var(--size-switch-height) - var(--size-switch-thumb)) / 2);
+  left: calc((var(--size-switch-height) - var(--size-switch-thumb)) / 2);
+  width: var(--size-switch-thumb);
+  height: var(--size-switch-thumb);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  transition: transform 0.15s;
+}
+.input:checked + .track { background: var(--color-primary); }
+.input:checked + .track::after { transform: translateX(calc(var(--size-switch-width) - var(--size-switch-height))); }
+.input:focus-visible + .track { outline: var(--border-hairline) solid var(--color-primary); outline-offset: var(--border-hairline); }
+.input:disabled + .track { opacity: 0.5; }
+.label { color: var(--color-text); }

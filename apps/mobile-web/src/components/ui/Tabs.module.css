@@ -1,0 +1,14 @@
+.tabs { display: flex; gap: var(--space-sm); padding: var(--space-xs); background: var(--color-track); border-radius: var(--radius-md); }
+.tab {
+  flex: 1;
+  min-height: var(--size-touch);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-muted);
+  font-family: inherit;
+  font-size: var(--font-size-md);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.active { background: var(--color-surface); color: var(--color-text); box-shadow: var(--shadow-card); }

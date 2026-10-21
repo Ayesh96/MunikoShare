@@ -1,0 +1,3 @@
+[workspace]
+resolver = "2"
+members = ["crates/muniko-core", "apps/desktop/src-tauri"]

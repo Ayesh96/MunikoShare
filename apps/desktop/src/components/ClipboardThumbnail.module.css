@@ -1,0 +1,1 @@
+.image { display: block; max-width: var(--size-thumbnail); height: auto; border-radius: var(--radius-sm); background: var(--color-badge-bg); }

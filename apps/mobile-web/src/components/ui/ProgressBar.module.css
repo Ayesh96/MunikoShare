@@ -1,0 +1,5 @@
+.track { height: var(--size-progress-height); background: var(--color-track); border-radius: var(--radius-pill); overflow: hidden; }
+.fill { height: 100%; transition: width 0.15s linear; }
+.info { background: var(--color-primary); }
+.success { background: var(--color-success); }
+.danger { background: var(--color-danger); }

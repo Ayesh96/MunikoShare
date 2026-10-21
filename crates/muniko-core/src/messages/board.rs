@@ -1,0 +1,55 @@
+pub const DEFAULT_BOARD_NAME: &str = "Network Board";
+pub const UNKNOWN_AUTHOR: &str = "Unknown device";
+
+pub const NO_BOARD: &str = "This device is not on a board";
+pub const ALREADY_ON_BOARD: &str = "Leave the current board first";
+pub const NOT_A_MEMBER: &str = "Not a member of this board";
+pub const BOARD_MISMATCH: &str = "Different board";
+pub const WRONG_CODE: &str = "Wrong join code";
+pub const CODE_REQUIRED: &str = "A join code is required";
+pub const CODE_TOO_SHORT: &str = "The join code is too short";
+pub const TOO_MANY_ATTEMPTS: &str = "Too many failed attempts, try again later";
+pub const INVALID_MEMBER: &str = "Invalid member record";
+pub const INVALID_NAME: &str = "Invalid board name";
+pub const TEXT_EMPTY: &str = "Text is empty";
+pub const TEXT_TOO_LARGE: &str = "Text is too large for the board";
+pub const FILE_NAME_INVALID: &str = "File name is invalid";
+pub const ITEM_NOT_FOUND: &str = "Item not found";
+pub const NOT_YOUR_ITEM: &str = "Only the author can delete an item";
+pub const ITEM_REJECTED: &str = "The item was rejected as invalid";
+pub const NOT_A_FILE: &str = "Not a regular file";
+pub const READ_FILE_FAILED: &str = "Could not read file";
+pub const TOO_MANY_ITEMS: &str = "Too many items in one request";
+pub const BAD_SIGNING_KEY: &str = "Device key cannot sign";
+pub const PEER_REJECTED: &str = "Peer rejected the request";
+pub const BAD_REPLY: &str = "Peer sent an unreadable reply";
+pub const REQUEST_FAILED: &str = "Board request failed";
+
+pub const DB_OPEN_FAILED: &str = "Could not open the board database";
+pub const DB_QUERY_FAILED: &str = "Board database query failed";
+pub const DB_LOCK_POISONED: &str = "Board database lock poisoned";
+pub const DB_BAD_ROW: &str = "Stored board item is unreadable";
+
+pub const LOG_CREATED: &str = "board created";
+pub const LOG_JOINED: &str = "board joined";
+pub const LOG_LEFT: &str = "board left";
+pub const LOG_CONFLICT: &str = "another board was seen on this network";
+pub const LOG_SYNC_FAILED: &str = "board sync with peer failed";
+pub const LOG_PUSH_FAILED: &str = "board push to peer failed";
+pub const LOG_BOOTSTRAP_FAILED: &str = "board bootstrap failed";
+pub const LOG_REJECTED_ITEMS: &str = "rejected invalid board items";
+pub const LOG_PRUNED: &str = "pruned expired board items";
+
+pub const FILE_NOT_HELD: &str = "This device does not hold that file";
+pub const BAD_FILE_ID: &str = "Invalid file hash";
+pub const BAD_RANGE: &str = "Unsatisfiable range";
+pub const NOT_A_FILE_ITEM: &str = "The item is not a file";
+pub const NO_HOLDER: &str = "No online device has this file";
+pub const FETCH_FAILED: &str = "Could not fetch the file from any device";
+pub const HASH_MISMATCH: &str = "The file content does not match its hash";
+pub const SIZE_MISMATCH: &str = "The file size does not match the board item";
+pub const FETCH_INTERRUPTED: &str = "File transfer was interrupted";
+pub const CACHE_FAILED: &str = "Could not store the file in the board cache";
+pub const EXPORT_FAILED: &str = "Could not save the file to the downloads folder";
+pub const LOG_FETCH_FAILED: &str = "fetching a board file from a peer failed";
+pub const LOG_MAINTENANCE_FAILED: &str = "board file maintenance failed";

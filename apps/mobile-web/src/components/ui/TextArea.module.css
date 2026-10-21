@@ -1,0 +1,13 @@
+.area {
+  width: 100%;
+  min-height: var(--size-text-area-height);
+  padding: var(--space-md);
+  background: var(--color-bg);
+  color: var(--color-text);
+  border: var(--border-hairline) solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  /* 16px minimum stops iOS Safari zooming on focus */
+  font-size: var(--font-size-md);
+  resize: vertical;
+}

@@ -1,0 +1,8 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+  box-sizing: border-box;
+  min-height: 100vh;
+}

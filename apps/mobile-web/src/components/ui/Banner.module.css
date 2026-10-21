@@ -1,0 +1,4 @@
+.banner { margin: 0; font-size: var(--font-size-sm); }
+.info { color: var(--color-text-muted); }
+.success { color: var(--color-success); }
+.danger { color: var(--color-danger); }

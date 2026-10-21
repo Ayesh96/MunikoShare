@@ -1,0 +1,16 @@
+.field { display: flex; flex-direction: column; gap: var(--space-xs); }
+.label { font-size: var(--font-size-sm); color: var(--color-text-muted); }
+.error { font-size: var(--font-size-xs); color: var(--color-danger); }
+.control {
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--space-sm) var(--space-md);
+  border: var(--border-hairline) solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: var(--font-size-md);
+}
+.control:focus { outline: none; border-color: var(--color-primary); }
+.invalid { border-color: var(--color-danger); }

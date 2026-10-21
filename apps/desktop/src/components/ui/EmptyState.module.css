@@ -1,0 +1,4 @@
+.empty { text-align: center; padding: var(--space-xl) var(--space-lg); color: var(--color-text-muted); }
+.icon { font-size: var(--font-size-xl); margin-bottom: var(--space-sm); }
+.title { color: var(--color-text); }
+.hint { font-size: var(--font-size-sm); margin-top: var(--space-xs); }

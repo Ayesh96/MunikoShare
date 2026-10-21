@@ -1,0 +1,13 @@
+pub const CREATE_TABLE_SQL: &str = "CREATE TABLE IF NOT EXISTS trusted_devices (id TEXT PRIMARY KEY, name TEXT NOT NULL, os TEXT NOT NULL, paired_at INTEGER NOT NULL)";
+pub const UPSERT_SQL: &str = "INSERT OR REPLACE INTO trusted_devices (id, name, os, paired_at) VALUES (?1, ?2, ?3, ?4)";
+pub const DELETE_SQL: &str = "DELETE FROM trusted_devices WHERE id = ?1";
+pub const SELECT_ALL_SQL: &str = "SELECT id, name, os, paired_at FROM trusted_devices ORDER BY paired_at";
+pub const EXISTS_SQL: &str = "SELECT 1 FROM trusted_devices WHERE id = ?1";
+pub const CREATE_SETTINGS_TABLE_SQL: &str = "CREATE TABLE IF NOT EXISTS device_settings (id TEXT PRIMARY KEY, auto_accept INTEGER NOT NULL DEFAULT 0)";
+pub const UPSERT_AUTO_ACCEPT_SQL: &str = "INSERT INTO device_settings (id, auto_accept) VALUES (?1, ?2) ON CONFLICT(id) DO UPDATE SET auto_accept = excluded.auto_accept";
+pub const SELECT_AUTO_ACCEPT_SQL: &str = "SELECT s.auto_accept FROM device_settings s JOIN trusted_devices t ON t.id = s.id WHERE s.id = ?1";
+pub const DELETE_SETTINGS_SQL: &str = "DELETE FROM device_settings WHERE id = ?1";
+pub const ADD_CLIPBOARD_SYNC_COLUMN_SQL: &str = "ALTER TABLE device_settings ADD COLUMN clipboard_sync INTEGER NOT NULL DEFAULT 0";
+pub const DUPLICATE_COLUMN_ERROR: &str = "duplicate column name";
+pub const UPSERT_CLIPBOARD_SYNC_SQL: &str = "INSERT INTO device_settings (id, clipboard_sync) VALUES (?1, ?2) ON CONFLICT(id) DO UPDATE SET clipboard_sync = excluded.clipboard_sync";
+pub const SELECT_CLIPBOARD_SYNC_SQL: &str = "SELECT s.clipboard_sync FROM device_settings s JOIN trusted_devices t ON t.id = s.id WHERE s.id = ?1";

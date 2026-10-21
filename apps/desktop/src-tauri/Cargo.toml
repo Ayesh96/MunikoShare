@@ -1,0 +1,37 @@
+[package]
+name = "muniko-share"
+version = "0.1.0"
+edition = "2021"
+license = "LicenseRef-PolyForm-Internal-Use-1.0.0"
+license-file = "../../../LICENSE"
+
+[lib]
+name = "muniko_share_lib"
+crate-type = ["rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+muniko-core = { path = "../../../crates/muniko-core" }
+tauri = { version = "2", features = ["tray-icon"] }
+tauri-plugin-dialog = "2"
+hostname = "0.4"
+if-addrs = "0.15"
+serde = { version = "1", features = ["derive"] }
+tokio = { version = "1", features = ["sync", "rt", "macros"] }
+tracing = "0.1"
+async-trait = "0.1"
+tauri-plugin-global-shortcut = "2"
+tauri-plugin-opener = "2"
+tauri-plugin-process = "2"
+serde_json = "1"
+url = "2"
+
+[target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
+tauri-plugin-autostart = "2"
+tauri-plugin-single-instance = "2"
+tauri-plugin-updater = "2"
+
+[target."cfg(windows)".dependencies]
+mslnk = "0.1"
