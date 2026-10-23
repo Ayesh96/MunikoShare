@@ -5,6 +5,19 @@
 2. Tag and push: `git tag v0.2.0 && git push origin v0.2.0`.
 3. `.github/workflows/release.yml` builds Linux (`.AppImage`, `.deb`, `.rpm`), macOS (universal `.dmg` and `.app`) and Windows (`.msi`, NSIS `.exe`), signs the updater artifacts and creates a **draft** GitHub release with `latest.json`. Review it, then publish.
 
+## Release files
+Assets are named `MunikoShare-<version>-<platform>-<arch>[-setup].<ext>` through `releaseAssetNamePattern` in `release.yml`; users only need these:
+
+| Platform | File | Use |
+|---|---|---|
+| Windows | `*-windows-x64-setup.exe` | Normal installer |
+| Windows | `*-windows-x64.msi` | IT and silent installs |
+| macOS | `*-macos-universal.dmg` | Intel and Apple Silicon |
+| Linux | `*.AppImage` | Any distro, no install |
+| Linux | `*.deb` / `*.rpm` | Debian-based / Fedora-based |
+
+`latest.json`, the `.sig` files and the macOS `.app.tar.gz` exist only for the auto-updater.
+
 ## Updater keys (one time)
 1. `npx tauri signer generate -w ~/.tauri/muniko-share.key` (run it in `apps/desktop`).
 2. Put the **public** key into `plugins.updater.pubkey` in `apps/desktop/src-tauri/tauri.conf.json` (currently a placeholder).
