@@ -5,3 +5,10 @@ dist/
 PLAN.md
 CLAUDE.md
 .claude/
+
+# Docs and AI instructions
+*.md
+.claude/
+AGENTS.md
+.cursor/
+.cursorrules

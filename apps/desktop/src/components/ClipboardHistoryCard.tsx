@@ -1,20 +1,7 @@
+import { CLIPBOARD_EMPTY_ICON } from "../constants/icons";
 import { formatBytes } from "../lib/format";
 import { formatTimestamp } from "../lib/time";
-import {
-  CLEAR_CLIPBOARD_LABEL,
-  CLIPBOARD_EMPTY_HINT,
-  CLIPBOARD_EMPTY_ICON,
-  CLIPBOARD_EMPTY_TITLE,
-  CLIPBOARD_HISTORY_TITLE,
-  clipboardImageTitle,
-  clipboardItemRow,
-  clipboardTextLength,
-  COPY_LABEL,
-  PIN_LABEL,
-  PINNED_LABEL,
-  SOURCE_THIS_DEVICE,
-  UNPIN_LABEL,
-} from "../messages/ui";
+import { CLEAR_CLIPBOARD_LABEL, CLIPBOARD_EMPTY_HINT, CLIPBOARD_EMPTY_TITLE, CLIPBOARD_HISTORY_TITLE, clipboardImageTitle, clipboardItemRow, clipboardTextLength, COPY_LABEL, PIN_LABEL, PINNED_LABEL, SOURCE_THIS_DEVICE, UNPIN_LABEL } from "../messages/ui";
 import type { ClipboardItem } from "../types/clipboard";
 import { ClipboardThumbnail } from "./ClipboardThumbnail";
 import { Badge, Button, Card, EmptyState, List, ListItem } from "./ui";

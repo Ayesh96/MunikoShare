@@ -1,14 +1,6 @@
+import { PHONE_EMPTY_ICON } from "../constants/icons";
 import { formatTimestamp } from "../lib/time";
-import {
-  PHONE_DISCONNECT_LABEL,
-  PHONE_EMPTY_HINT,
-  PHONE_EMPTY_ICON,
-  PHONE_EMPTY_TITLE,
-  PHONE_LIST_TITLE,
-  PHONE_SEND_FILES_LABEL,
-  PHONE_SEND_TEXT_LABEL,
-  phoneRow,
-} from "../messages/phone";
+import { PHONE_DISCONNECT_LABEL, PHONE_EMPTY_HINT, PHONE_EMPTY_TITLE, PHONE_LIST_TITLE, PHONE_SEND_FILES_LABEL, PHONE_SEND_TEXT_LABEL, phoneRow } from "../messages/phone";
 import type { PhoneSession } from "../types/phone";
 import styles from "./PhoneList.module.css";
 import { Button, Card, EmptyState, List, ListItem } from "./ui";

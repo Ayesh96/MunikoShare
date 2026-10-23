@@ -16,6 +16,7 @@ export function Tabs({ items, activeId, onChange }: TabsProps) {
     <div className={styles.tabs} role="tablist">
       {items.map((item) => (
         <button
+          type="button"
           key={item.id}
           role="tab"
           aria-selected={item.id === activeId}

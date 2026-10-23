@@ -1,3 +1,3 @@
-.hint { color: var(--color-text-muted); font-size: var(--font-size-sm); }
-.row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-md); }
+.hint { color: var(--color-text-muted); font-size: var(--font-size-caption); }
+.row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-sm); }
 .spacer { flex: 1; }

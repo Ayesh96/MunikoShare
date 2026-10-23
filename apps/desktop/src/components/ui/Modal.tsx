@@ -1,13 +1,13 @@
 import type { ReactNode } from "react";
 import { useEffect, useId, useRef } from "react";
 
-import { Button } from "./Button";
+import { Button, type ButtonVariant } from "./Button";
 import styles from "./Modal.module.css";
 
 export interface ModalAction {
   label: string;
   onClick: () => void;
-  variant?: "primary" | "secondary";
+  variant?: ButtonVariant;
   disabled?: boolean;
 }
 

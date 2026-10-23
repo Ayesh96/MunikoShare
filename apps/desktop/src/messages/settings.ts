@@ -34,12 +34,10 @@ export const SEND_TO_SEND_LABEL = "Send";
 export const SEND_TO_CANCEL_LABEL = "Cancel";
 export const SEND_TO_PHONES_HEADING = "Phones";
 export const SEND_TO_DEVICES_HEADING = "Paired devices";
-export const SEND_TO_EMPTY_ICON = "📡";
 export const SEND_TO_EMPTY_TITLE = "No paired devices or phones nearby";
 export const SEND_TO_EMPTY_HINT = "Pair a device or connect a phone, then send again.";
 export const sendToSummary = (count: number) => `${count} ${count === 1 ? "item" : "items"} to send`;
 export const sendToStarted = (name: string) => `Sending to ${name}`;
 
-export const PHONE_ACCESS_OFF_ICON = "📱";
 export const PHONE_ACCESS_OFF_TITLE = "Phone access is off";
 export const PHONE_ACCESS_OFF_HINT = "Turn it on in Settings to connect phones.";

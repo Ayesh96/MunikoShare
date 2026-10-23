@@ -1,0 +1,8 @@
+.list { display: flex; flex-direction: column; gap: var(--space-sm); }
+.row { display: flex; align-items: center; gap: var(--space-md); height: var(--size-skeleton-row); }
+.circle, .bar { background: var(--color-track); animation: pulse 1.2s ease-in-out infinite; }
+.circle { width: var(--space-xl); height: var(--space-xl); border-radius: var(--radius-pill); }
+.lines { display: flex; flex-direction: column; gap: var(--space-sm); flex: 1; }
+.bar { height: var(--space-sm); border-radius: var(--radius-sm); }
+.short { width: 40%; }
+@keyframes pulse { 50% { opacity: 0.5; } }

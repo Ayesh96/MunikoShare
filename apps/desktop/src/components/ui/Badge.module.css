@@ -1,7 +1,7 @@
 .badge {
   padding: var(--space-xs) var(--space-sm);
   border-radius: var(--radius-pill);
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-caption);
   white-space: nowrap;
 }
 .neutral { background: var(--color-badge-bg); color: var(--color-text-muted); }

@@ -1,24 +1,10 @@
+import { BOARD_FEED_EMPTY_ICON } from "../constants/icons";
 import { useState } from "react";
 
 import { BOARD_TEXT_COLLAPSE_LENGTH } from "../constants/board";
 import { formatBytes } from "../lib/format";
 import { formatTimestamp } from "../lib/time";
-import {
-  BOARD_AUTHOR_OFFLINE,
-  BOARD_COPY_LABEL,
-  BOARD_DELETE_LABEL,
-  BOARD_DOWNLOAD_LABEL,
-  BOARD_FEED_EMPTY_HINT,
-  BOARD_FEED_EMPTY_ICON,
-  BOARD_FEED_EMPTY_TITLE,
-  BOARD_FEED_TITLE,
-  BOARD_SAVED_BADGE,
-  BOARD_SHOW_LESS_LABEL,
-  BOARD_SHOW_MORE_LABEL,
-  BOARD_YOU,
-  boardFileRow,
-  boardItemRow,
-} from "../messages/board";
+import { BOARD_AUTHOR_OFFLINE, BOARD_COPY_LABEL, BOARD_DELETE_LABEL, BOARD_DOWNLOAD_LABEL, BOARD_FEED_EMPTY_HINT, BOARD_FEED_EMPTY_TITLE, BOARD_FEED_TITLE, BOARD_SAVED_BADGE, BOARD_SHOW_LESS_LABEL, BOARD_SHOW_MORE_LABEL, BOARD_YOU, boardFileRow, boardItemRow } from "../messages/board";
 import type { BoardItem } from "../types/board";
 import styles from "./BoardItemList.module.css";
 import { Badge, Button, Card, EmptyState, List, ListItem } from "./ui";

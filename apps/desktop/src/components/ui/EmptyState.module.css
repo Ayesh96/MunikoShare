@@ -1,4 +1,5 @@
-.empty { text-align: center; padding: var(--space-xl) var(--space-lg); color: var(--color-text-muted); }
-.icon { font-size: var(--font-size-xl); margin-bottom: var(--space-sm); }
-.title { color: var(--color-text); }
-.hint { font-size: var(--font-size-sm); margin-top: var(--space-xs); }
+.empty { text-align: center; padding: var(--space-xl) var(--space-md); color: var(--color-text-muted); }
+.icon { margin-bottom: var(--space-sm); }
+.title { margin: 0; font-size: var(--font-size-title); line-height: var(--line-height-title); color: var(--color-text); }
+.hint { margin: var(--space-xs) 0 0; font-size: var(--font-size-caption); line-height: var(--line-height-caption); }
+.action { margin-top: var(--space-md); }

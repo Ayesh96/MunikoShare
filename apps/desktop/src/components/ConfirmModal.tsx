@@ -17,7 +17,7 @@ export function ConfirmModal({ title, message, confirmLabel = BOARD_CONFIRM_LABE
       onClose={onClose}
       actions={[
         { label: BOARD_CANCEL, onClick: onClose },
-        { label: confirmLabel, onClick: onConfirm, variant: "primary" },
+        { label: confirmLabel, onClick: onConfirm, variant: "destructive" },
       ]}
     >
       <p>{message}</p>

@@ -11,7 +11,6 @@ export const BOARD_POST_LABEL = "Post";
 export const BOARD_ADD_FILES_LABEL = "Add files";
 export const BOARD_PICK_FILES_TITLE = "Choose files to post";
 export const BOARD_FEED_TITLE = "Shared items";
-export const BOARD_FEED_EMPTY_ICON = "📌";
 export const BOARD_FEED_EMPTY_TITLE = "Nothing shared yet";
 export const BOARD_FEED_EMPTY_HINT = "Posts and files appear here for every device on the network.";
 export const BOARD_COPY_LABEL = "Copy";
@@ -28,7 +27,6 @@ export const BOARD_LEAVE_LABEL = "Leave board";
 export const BOARD_LEAVE_TITLE = "Leave board";
 export const boardLeavePrompt = (name: string) => `Leave "${name}"? Its items stay on the other devices.`;
 
-export const BOARD_SETUP_ICON = "🗂️";
 export const BOARD_SETUP_TITLE = "No board yet";
 export const BOARD_SETUP_HINT = "A board is being set up automatically. You can also create one or join one found on the network.";
 export const BOARD_CREATE_LABEL = "Create board";

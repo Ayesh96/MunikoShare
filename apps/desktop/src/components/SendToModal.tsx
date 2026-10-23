@@ -1,16 +1,7 @@
+import { SEND_TO_EMPTY_ICON } from "../constants/icons";
 import type { PhoneSession } from "../types/phone";
 import type { DeviceInfo } from "../types/device";
-import {
-  SEND_TO_CANCEL_LABEL,
-  SEND_TO_DEVICES_HEADING,
-  SEND_TO_EMPTY_HINT,
-  SEND_TO_EMPTY_ICON,
-  SEND_TO_EMPTY_TITLE,
-  SEND_TO_PHONES_HEADING,
-  SEND_TO_SEND_LABEL,
-  SEND_TO_TITLE,
-  sendToSummary,
-} from "../messages/settings";
+import { SEND_TO_CANCEL_LABEL, SEND_TO_DEVICES_HEADING, SEND_TO_EMPTY_HINT, SEND_TO_EMPTY_TITLE, SEND_TO_PHONES_HEADING, SEND_TO_SEND_LABEL, SEND_TO_TITLE, sendToSummary } from "../messages/settings";
 import { fileName } from "../lib/format";
 import { Button, EmptyState, List, ListItem, Modal } from "./ui";
 

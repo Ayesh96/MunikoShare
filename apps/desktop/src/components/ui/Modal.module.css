@@ -5,22 +5,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-lg);
+  padding: var(--space-md);
   background: var(--color-overlay);
 }
 .dialog {
   width: var(--size-modal-width);
   max-width: 100%;
   box-sizing: border-box;
-  padding: var(--space-xl);
+  padding: var(--space-lg);
   border-radius: var(--radius-md);
   background: var(--color-surface);
   color: var(--color-text);
   box-shadow: var(--shadow-modal);
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  gap: var(--space-md);
 }
 .dialog:focus { outline: none; }
-.title { margin: 0; font-size: var(--font-size-lg); }
+.title { margin: 0; font-size: var(--font-size-title); }
 .footer { display: flex; justify-content: flex-end; gap: var(--space-sm); }

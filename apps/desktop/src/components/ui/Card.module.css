@@ -3,9 +3,9 @@
   border: var(--border-hairline) solid var(--color-border);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-card);
-  padding: var(--space-lg);
+  padding: var(--space-md);
 }
 .title {
-  margin: 0 0 var(--space-md);
-  font-size: var(--font-size-lg);
+  margin: 0 0 var(--space-sm);
+  font-size: var(--font-size-title);
 }

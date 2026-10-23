@@ -1,2 +1,2 @@
-.hint { margin: var(--space-md) 0 0; color: var(--color-text-muted); font-size: var(--font-size-sm); }
+.hint { margin: var(--space-sm) 0 0; color: var(--color-text-muted); font-size: var(--font-size-caption); }
 .actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: var(--space-sm); }

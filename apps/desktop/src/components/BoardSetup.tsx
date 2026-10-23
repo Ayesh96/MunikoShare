@@ -1,14 +1,5 @@
-import {
-  BOARD_CREATE_LABEL,
-  BOARD_DISCOVERED_TITLE,
-  BOARD_JOIN_LABEL,
-  BOARD_MODE_OPEN,
-  BOARD_MODE_PROTECTED,
-  BOARD_SETUP_HINT,
-  BOARD_SETUP_ICON,
-  BOARD_SETUP_TITLE,
-  boardDiscoveredRow,
-} from "../messages/board";
+import { BOARD_SETUP_ICON } from "../constants/icons";
+import { BOARD_CREATE_LABEL, BOARD_DISCOVERED_TITLE, BOARD_JOIN_LABEL, BOARD_MODE_OPEN, BOARD_MODE_PROTECTED, BOARD_SETUP_HINT, BOARD_SETUP_TITLE, boardDiscoveredRow } from "../messages/board";
 import type { ObservedBoard } from "../types/board";
 import { Badge, Button, Card, EmptyState, List, ListItem } from "./ui";
 

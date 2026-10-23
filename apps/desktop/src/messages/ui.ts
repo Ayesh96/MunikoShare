@@ -10,24 +10,19 @@ export const TAB_DEVICES_LABEL = "Devices";
 export const TAB_HISTORY_LABEL = "History";
 
 export const NEARBY_TITLE = "Nearby devices";
-export const NEARBY_EMPTY_ICON = "📡";
 export const NEARBY_EMPTY_TITLE = "No devices found";
 export const NEARBY_EMPTY_HINT = "Open Muniko Share on another device in this network.";
 export const SEND_FILES_LABEL = "Send files";
-export const SEND_FILES_ICON = "📤";
 export const SEND_CLIPBOARD_LABEL = "Send clipboard";
-export const SEND_CLIPBOARD_ICON = "📋";
 export const PAIR_LABEL = "Pair";
 export const UNPAIR_LABEL = "Unpair";
 export const PAIRED_BADGE = "Paired";
 export const PICK_FILES_TITLE = "Choose files to send";
 export const SEND_FOLDER_LABEL = "Send folder";
-export const SEND_FOLDER_ICON = "📁";
 export const PICK_FOLDER_TITLE = "Choose a folder to send";
 export const AUTO_ACCEPT_LABEL = "Auto-accept";
 
 export const HISTORY_TITLE = "History";
-export const HISTORY_EMPTY_ICON = "🕘";
 export const HISTORY_EMPTY_TITLE = "No history yet";
 export const HISTORY_EMPTY_HINT = "Sent and received files, pairing and clipboard show up here.";
 export const CLEAR_HISTORY_LABEL = "Clear history";
@@ -93,7 +88,6 @@ export const CLIPBOARD_SYNC_HINT =
   "Clipboard sync is automatic both ways, but only when it is turned on on both devices.";
 
 export const CLIPBOARD_HISTORY_TITLE = "Clipboard history";
-export const CLIPBOARD_EMPTY_ICON = "📋";
 export const CLIPBOARD_EMPTY_TITLE = "Clipboard history is empty";
 export const CLIPBOARD_EMPTY_HINT = "Copied and received items show up here.";
 export const CLEAR_CLIPBOARD_LABEL = "Clear";

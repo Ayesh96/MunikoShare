@@ -9,7 +9,6 @@ export const PHONE_ACCESS_LABEL = "Phone access";
 export const PHONE_ACCESS_HINT = "Let phones on this network send and receive files in a browser.";
 export const PHONE_CONNECT_LABEL = "Connect phone";
 export const PHONE_LIST_TITLE = "Connected phones";
-export const PHONE_EMPTY_ICON = "📱";
 export const PHONE_EMPTY_TITLE = "No phones connected";
 export const PHONE_EMPTY_HINT = "Use Connect phone and scan the QR code with your phone camera.";
 export const PHONE_SEND_FILES_LABEL = "Send files";

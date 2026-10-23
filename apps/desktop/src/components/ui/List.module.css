@@ -2,13 +2,13 @@
 .item {
   display: flex;
   align-items: center;
-  gap: var(--space-md);
-  padding: var(--space-md) 0;
+  gap: var(--space-sm);
+  padding: var(--space-sm) 0;
   border-top: var(--border-hairline) solid var(--color-border);
 }
 .item:first-child { border-top: none; }
 .leading { flex: none; }
 .text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--space-xs); }
 .title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.subtitle { color: var(--color-text-muted); font-size: var(--font-size-sm); }
+.subtitle { color: var(--color-text-muted); font-size: var(--font-size-caption); }
 .titleWrap { white-space: pre-wrap; overflow-wrap: anywhere; }

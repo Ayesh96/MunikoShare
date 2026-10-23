@@ -1,13 +1,7 @@
+import { HISTORY_EMPTY_ICON } from "../constants/icons";
 import { HISTORY_BADGES, historyTitle } from "../lib/history";
 import { formatTimestamp } from "../lib/time";
-import {
-  CLEAR_HISTORY_LABEL,
-  HISTORY_EMPTY_HINT,
-  HISTORY_EMPTY_ICON,
-  HISTORY_EMPTY_TITLE,
-  HISTORY_TITLE,
-  historyRow,
-} from "../messages/ui";
+import { CLEAR_HISTORY_LABEL, HISTORY_EMPTY_HINT, HISTORY_EMPTY_TITLE, HISTORY_TITLE, historyRow } from "../messages/ui";
 import type { HistoryEntry } from "../types/history";
 import { Badge, Button, Card, EmptyState, List, ListItem } from "./ui";
 
