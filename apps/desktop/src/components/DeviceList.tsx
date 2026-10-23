@@ -1,11 +1,13 @@
 import { NEARBY_EMPTY_ICON, SEND_CLIPBOARD_ICON, SEND_FILES_ICON, SEND_FOLDER_ICON } from "../constants/icons";
-import { AUTO_ACCEPT_LABEL, CLIPBOARD_SYNC_HINT, CLIPBOARD_SYNC_LABEL, NEARBY_EMPTY_HINT, NEARBY_EMPTY_TITLE, NEARBY_TITLE, PAIRED_BADGE, PAIR_LABEL, SEND_CLIPBOARD_LABEL, SEND_FILES_LABEL, SEND_FOLDER_LABEL, UNPAIR_LABEL } from "../messages/ui";
+import { ADD_BY_IP_LABEL, AUTO_ACCEPT_LABEL, CLIPBOARD_SYNC_HINT, CLIPBOARD_SYNC_LABEL, NEARBY_EMPTY_HINT, NEARBY_EMPTY_TITLE, NEARBY_TITLE, PAIRED_BADGE, PAIR_LABEL, SEND_CLIPBOARD_LABEL, SEND_FILES_LABEL, SEND_FOLDER_LABEL, UNPAIR_LABEL } from "../messages/ui";
 import type { DeviceInfo } from "../types/device";
 import styles from "./DeviceList.module.css";
-import { Badge, Button, Card, EmptyState, List, ListItem, Switch } from "./ui";
+import { Badge, Button, Card, EmptyState, List, ListItem, Skeleton, Switch } from "./ui";
 
 export interface DeviceListProps {
   peers: DeviceInfo[];
+  loading: boolean;
+  onAddDevice: () => void;
   trusted: Set<string>;
   autoAccept: Set<string>;
   clipboardSync: Set<string>;
@@ -19,12 +21,14 @@ export interface DeviceListProps {
 }
 
 export function DeviceList(props: DeviceListProps) {
-  const { peers, trusted, autoAccept, clipboardSync, onSendFiles, onSendFolder, onSendClipboard, onToggleAutoAccept, onToggleClipboardSync, onPair, onUnpair } = props;
+  const { peers, loading, onAddDevice, trusted, autoAccept, clipboardSync, onSendFiles, onSendFolder, onSendClipboard, onToggleAutoAccept, onToggleClipboardSync, onPair, onUnpair } = props;
   const hasPaired = peers.some((peer) => trusted.has(peer.id));
   return (
     <Card title={NEARBY_TITLE}>
-      {peers.length === 0 ? (
-        <EmptyState icon={NEARBY_EMPTY_ICON} title={NEARBY_EMPTY_TITLE} hint={NEARBY_EMPTY_HINT} />
+      {loading ? (
+        <Skeleton />
+      ) : peers.length === 0 ? (
+        <EmptyState icon={NEARBY_EMPTY_ICON} title={NEARBY_EMPTY_TITLE} hint={NEARBY_EMPTY_HINT} actionLabel={ADD_BY_IP_LABEL} onAction={onAddDevice} />
       ) : (
         <List>
           {peers.map((peer) => (

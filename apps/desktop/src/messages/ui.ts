@@ -11,7 +11,7 @@ export const TAB_HISTORY_LABEL = "History";
 
 export const NEARBY_TITLE = "Nearby devices";
 export const NEARBY_EMPTY_TITLE = "No devices found";
-export const NEARBY_EMPTY_HINT = "Open Muniko Share on another device in this network.";
+export const NEARBY_EMPTY_HINT = "Open Muniko Share on another device on the same Wi-Fi or network, or add one by its IP address.";
 export const SEND_FILES_LABEL = "Send files";
 export const SEND_CLIPBOARD_LABEL = "Send clipboard";
 export const PAIR_LABEL = "Pair";
@@ -26,6 +26,10 @@ export const HISTORY_TITLE = "History";
 export const HISTORY_EMPTY_TITLE = "No history yet";
 export const HISTORY_EMPTY_HINT = "Sent and received files, pairing and clipboard show up here.";
 export const CLEAR_HISTORY_LABEL = "Clear history";
+export const HISTORY_EMPTY_ACTION = "Go to devices";
+export const HISTORY_ERROR_TITLE = "History didn't load";
+export const HISTORY_ERROR_HINT = "Muniko Share couldn't read the saved history file. Try again, or restart the app if this repeats.";
+export const RETRY_LABEL = "Try again";
 
 export const BADGE_RECEIVED = "Received";
 export const BADGE_SENT = "Sent";

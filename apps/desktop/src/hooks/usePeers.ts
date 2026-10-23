@@ -9,15 +9,22 @@ function upsert(peers: DeviceInfo[], device: DeviceInfo): DeviceInfo[] {
   return [...peers.filter((peer) => peer.id !== device.id), device];
 }
 
-export function usePeers(): DeviceInfo[] {
+export interface Peers {
+  peers: DeviceInfo[];
+  loading: boolean;
+}
+
+export function usePeers(): Peers {
   const [peers, setPeers] = useState<DeviceInfo[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let cancelled = false;
     // Merge so a PeerFound that arrived before the initial load is kept.
-    listPeers().then((initial) => {
-      if (!cancelled) setPeers((current) => initial.reduce(upsert, current));
-    });
+    listPeers()
+      .then((initial) => !cancelled && setPeers((current) => initial.reduce(upsert, current)))
+      .catch(() => undefined)
+      .finally(() => !cancelled && setLoading(false));
     return () => {
       cancelled = true;
     };
@@ -29,5 +36,5 @@ export function usePeers(): DeviceInfo[] {
   }, []);
   useNodeEvents(onEvent);
 
-  return peers;
+  return { peers, loading };
 }

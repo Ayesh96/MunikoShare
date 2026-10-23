@@ -23,3 +23,4 @@
 .destructive:hover:not(:disabled) { background: var(--color-danger-hover); }
 .sm { padding: var(--space-xs) var(--space-md); font-size: var(--font-size-caption); }
 .md { padding: var(--space-sm) var(--space-md); font-size: var(--font-size-body); }
+@media (max-width: 480px) { .button { min-height: var(--size-touch-target); } }

@@ -52,7 +52,7 @@ const TABS = [
 export function App() {
   const [tab, setTab] = useState(TAB_DEVICES);
   const device = useLocalDevice();
-  const peers = usePeers();
+  const { peers, loading: peersLoading } = usePeers();
   const trusted = useTrusted();
   const { notice, show, clear } = useNotice();
   const phones = usePhones(show);
@@ -81,6 +81,8 @@ export function App() {
       {tab === TAB_DEVICES ? (
         <DeviceList
           peers={peers}
+          loading={peersLoading}
+          onAddDevice={addDevice.open}
           trusted={trusted.ids}
           autoAccept={autoAccept.enabled}
           clipboardSync={clipboardSync.enabled}
@@ -106,7 +108,15 @@ export function App() {
       ) : tab === TAB_SETTINGS ? (
         <SettingsTab phones={phones} show={show} />
       ) : (
-        <HistoryList entries={history.entries} nameOf={nameOf} onClear={history.clear} />
+        <HistoryList
+          entries={history.entries}
+          loading={history.loading}
+          failed={history.failed}
+          nameOf={nameOf}
+          onClear={history.clear}
+          onRetry={history.reload}
+          onGoToDevices={() => setTab(TAB_DEVICES)}
+        />
       )}
       {launch.paths.length > 0 && (
         <SendToModal

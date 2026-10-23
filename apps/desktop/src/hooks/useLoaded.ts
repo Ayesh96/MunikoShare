@@ -4,12 +4,14 @@ import { useNodeEvents } from "./useNodeEvents";
 
 export interface Loaded<T> {
   value: T | null;
+  failed: boolean;
   reload: () => void;
 }
 
 /** Loads a value on mount and again whenever one of the listed node events arrives; `loader` must be stable. */
 export function useLoaded<T>(loader: () => Promise<T>, reloadOn: readonly string[] = []): Loaded<T> {
   const [value, setValue] = useState<T | null>(null);
+  const [failed, setFailed] = useState(false);
   const mounted = useRef(true);
   const latest = useRef(0);
 
@@ -17,8 +19,12 @@ export function useLoaded<T>(loader: () => Promise<T>, reloadOn: readonly string
     const request = ++latest.current;
     // Only the newest request may set state, so slow older replies cannot overwrite it.
     loader()
-      .then((result) => mounted.current && request === latest.current && setValue(result))
-      .catch(() => undefined);
+      .then((result) => {
+        if (!mounted.current || request !== latest.current) return;
+        setValue(result);
+        setFailed(false);
+      })
+      .catch(() => mounted.current && request === latest.current && setFailed(true));
   }, [loader]);
 
   useEffect(() => {
@@ -33,5 +39,5 @@ export function useLoaded<T>(loader: () => Promise<T>, reloadOn: readonly string
     if (reloadOn.includes(event.type)) reload();
   });
 
-  return { value, reload };
+  return { value, failed, reload };
 }
