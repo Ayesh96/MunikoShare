@@ -64,5 +64,5 @@ jobs:
           releaseDraft: true
           prerelease: false
           includeUpdaterJson: true
-          releaseAssetNamePattern: MunikoShare-[version]-[platform]-[arch][setup][ext]
+          assetNamePattern: MunikoShare-[version]-[platform]-[arch][setup][ext]
           args: --config src-tauri/tauri.release.conf.json ${{ matrix.args }}
