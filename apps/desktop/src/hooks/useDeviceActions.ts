@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 
 import { errorMessage } from "../lib/format";
-import { pickFiles, pickFolder, pushClipboard, pushText, sendFiles, unpair } from "../lib/tauriApi";
+import { pickFiles, pickFolder, pushClipboard, sendFiles, unpair } from "../lib/tauriApi";
 import { clipboardSentText } from "../messages/ui";
 import type { DeviceInfo } from "../types/device";
 import type { Tone } from "../types/ui";
@@ -12,7 +12,6 @@ export interface DeviceActions {
   sendPathsTo: (peer: DeviceInfo, paths: string[]) => Promise<void>;
   sendFolderTo: (peer: DeviceInfo) => Promise<void>;
   sendClipboardTo: (peer: DeviceInfo) => Promise<void>;
-  sendTextTo: (peer: DeviceInfo, text: string) => Promise<void>;
   unpairDevice: (peer: DeviceInfo) => Promise<void>;
 }
 
@@ -48,11 +47,7 @@ export function useDeviceActions(show: (message: string, tone: Tone) => void, pe
     (peer: DeviceInfo) => run(() => pushClipboard(peer.id), clipboardSentText(peer.name)),
     [run],
   );
-  const sendTextTo = useCallback(
-    (peer: DeviceInfo, text: string) => run(() => pushText(peer.id, text), clipboardSentText(peer.name)),
-    [run],
-  );
   const unpairDevice = useCallback((peer: DeviceInfo) => run(() => unpair(peer.id)), [run]);
 
-  return { sendPathsTo, sendFilesTo, sendFolderTo, sendClipboardTo, sendTextTo, unpairDevice };
+  return { sendPathsTo, sendFilesTo, sendFolderTo, sendClipboardTo, unpairDevice };
 }

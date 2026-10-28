@@ -104,8 +104,16 @@ impl BoardService {
         }
         // The guard keeps cache cleanup off the file until the item is stored.
         let (ingested, _guard) = self.ctx.files.cache.ingest(path).await?;
-        let kind = ItemKind::File { name: name.to_string(), size: ingested.size, sha256: ingested.sha256 };
-        self.post(kind)
+        self.post(ItemKind::File { name: name.to_string(), size: ingested.size, sha256: ingested.sha256 })
+    }
+
+    /// Posts in-memory content (such as a pasted image) as a file called `name`.
+    pub async fn post_bytes(&self, name: &str, bytes: &[u8]) -> Result<BoardItemView> {
+        if !valid_file_name(name) {
+            return Err(MunikoError::from(BoardError::InvalidFileName));
+        }
+        let (ingested, _guard) = self.ctx.files.cache.ingest_bytes(bytes).await?;
+        self.post(ItemKind::File { name: name.to_string(), size: ingested.size, sha256: ingested.sha256 })
     }
 
     /// Fetches the file into the cache if needed (from any online holder) and exports it to the download folder.
@@ -113,6 +121,12 @@ impl BoardService {
         let exported = export_to_downloads(&self.ctx, item_id).await?;
         reconcile(&self.ctx)?;
         Ok(exported)
+    }
+
+    /// The file's bytes, fetched into the cache first if needed.
+    pub async fn read_file(&self, item_id: &str) -> Result<Vec<u8>> {
+        let opened = self.open_file(item_id).await?;
+        tokio::fs::read(&opened.path).await.map_err(|e| MunikoError::from(BoardError::storage(msg::READ_FILE_FAILED, e)))
     }
 
     /// Fetches the file into the cache if needed (from any online holder) and returns it pinned until the lease drops.

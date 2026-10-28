@@ -5,6 +5,7 @@ use std::sync::Arc;
 use std::time::SystemTime;
 
 use tokio::fs::File;
+use tokio::io::AsyncRead;
 use tokio::sync::OwnedMutexGuard;
 
 use super::lease::{FileLease, Leases};
@@ -118,9 +119,19 @@ impl FileCache {
 
     /// Streams a local file into the cache while hashing it; the guard keeps the entry from cleanup until dropped.
     pub async fn ingest(&self, source: &Path) -> Result<(Ingested, OwnedMutexGuard<()>)> {
+        let mut reader = File::open(source).await.map_err(cache_error)?;
+        self.ingest_from(&mut reader).await
+    }
+
+    /// Same as `ingest`, for content that is already in memory (such as a pasted image).
+    pub async fn ingest_bytes(&self, bytes: &[u8]) -> Result<(Ingested, OwnedMutexGuard<()>)> {
+        self.ingest_from(&mut &bytes[..]).await
+    }
+
+    async fn ingest_from<R: AsyncRead + Unpin>(&self, reader: &mut R) -> Result<(Ingested, OwnedMutexGuard<()>)> {
         self.ensure_dir().await?;
         let temp = self.dir.join(format!("{INGEST_PREFIX}{}{PART_SUFFIX}", uuid::Uuid::new_v4()));
-        let copied = Self::copy_into(source, &temp).await;
+        let copied = Self::copy_into(reader, &temp).await;
         let (sha256, size) = match copied {
             Ok(done) => done,
             Err(error) => {
@@ -140,9 +151,8 @@ impl FileCache {
         Ok((Ingested { sha256, size }, guard))
     }
 
-    async fn copy_into(source: &Path, temp: &Path) -> std::io::Result<(String, u64)> {
-        let mut reader = File::open(source).await?;
+    async fn copy_into<R: AsyncRead + Unpin>(reader: &mut R, temp: &Path) -> std::io::Result<(String, u64)> {
         let mut writer = File::create(temp).await?;
-        copy_hashed(&mut reader, &mut writer).await
+        copy_hashed(reader, &mut writer).await
     }
 }

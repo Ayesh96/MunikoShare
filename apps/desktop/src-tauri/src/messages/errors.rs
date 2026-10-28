@@ -5,3 +5,5 @@ pub const INVALID_IP: &str = "not a valid IP address";
 pub const SETTINGS_SAVE_FAILED: &str = "could not save settings";
 pub const OPEN_DOWNLOADS_FAILED: &str = "could not open the download folder";
 pub const NOT_A_FOLDER: &str = "the chosen path is not a folder";
+pub const IMAGE_BODY_MISSING: &str = "the pasted image was empty";
+pub const IMAGE_NAME_MISSING: &str = "the pasted image had no file name";

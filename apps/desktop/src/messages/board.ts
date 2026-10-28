@@ -1,4 +1,4 @@
-export const TAB_BOARD_LABEL = "Board";
+export const TAB_BOARD_LABEL = "Files";
 
 export const BOARD_MODE_OPEN = "Open";
 export const BOARD_MODE_PROTECTED = "Protected";
@@ -6,13 +6,13 @@ export const BOARD_SAVED_BADGE = "Saved on this device";
 export const BOARD_AUTHOR_OFFLINE = "Author offline";
 export const BOARD_YOU = "You";
 
-export const BOARD_COMPOSER_PLACEHOLDER = "Write something for everyone on the network";
-export const BOARD_POST_LABEL = "Post";
-export const BOARD_ADD_FILES_LABEL = "Add files";
+export const BOARD_ADD_FILES_LABEL = "Share files";
+export const BOARD_SHARE_TITLE = "Share files with everyone";
+export const BOARD_DROP_HINT = "Pick files, or drop them anywhere in this window. Every device on the network can download them.";
 export const BOARD_PICK_FILES_TITLE = "Choose files to post";
-export const BOARD_FEED_TITLE = "Shared items";
-export const BOARD_FEED_EMPTY_TITLE = "Nothing shared yet";
-export const BOARD_FEED_EMPTY_HINT = "Posts and files appear here for every device on the network.";
+export const BOARD_FILES_TITLE = "Shared files";
+export const BOARD_FILES_EMPTY_TITLE = "No files shared yet";
+export const BOARD_FILES_EMPTY_HINT = "Files anyone on the network shares show up here, ready to download.";
 export const BOARD_COPY_LABEL = "Copy";
 export const BOARD_DOWNLOAD_LABEL = "Download";
 export const BOARD_DELETE_LABEL = "Delete";
@@ -20,14 +20,25 @@ export const boardItemRow = (author: string, time: string) => `${author} · ${ti
 export const boardFileRow = (size: string, author: string, time: string) => `${size} · ${author} · ${time}`;
 export const boardDownloaded = (path: string) => `Saved to ${path}`;
 export const BOARD_COPIED = "Copied to the clipboard";
+export const BOARD_IMAGE_COPIED = "Image copied to the clipboard";
+export const BOARD_IMAGE_SHARED = "Image shared with everyone";
+export const BOARD_IMAGE_ALT = "Shared image";
+export const pastedImageName = (stamp: string) => `Clipboard image ${stamp}.png`;
 
-export const BOARD_KEEPER_LABEL = "Keeper";
-export const BOARD_KEEPER_HINT = "Keep a copy of every board file on this device.";
+export const BOARD_SETTINGS_TITLE = "Shared board";
+export const BOARD_SETTINGS_HINT = "The board that File Sharing posts to. Devices on the same board see each other's posts and files.";
+export const BOARD_KEEPER_LABEL = "Keep a copy of every shared file";
+export const BOARD_KEEPER_HINT = "Saves each file on this device, so others can still download it when the person who shared it is offline.";
 export const BOARD_LEAVE_LABEL = "Leave board";
 export const BOARD_LEAVE_TITLE = "Leave board";
 export const boardLeavePrompt = (name: string) => `Leave "${name}"? Its items stay on the other devices.`;
 
 export const BOARD_SETUP_TITLE = "No board yet";
+export const BOARD_PENDING_TITLE = "Getting sharing ready";
+export const BOARD_PENDING_HINT = "This takes a few seconds. You can also pick or create a board in Settings.";
+export const BOARD_OPEN_SETTINGS_LABEL = "Open settings";
+export const BOARD_CONFLICT_NOTICE = "Another shared board was found on this network.";
+export const BOARD_CONFLICT_REVIEW = "Review in Settings";
 export const BOARD_SETUP_HINT = "A board is being set up automatically. You can also create one or join one found on the network.";
 export const BOARD_CREATE_LABEL = "Create board";
 export const BOARD_DISCOVERED_TITLE = "Boards on this network";

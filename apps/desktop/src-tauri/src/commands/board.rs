@@ -2,8 +2,11 @@ use std::path::PathBuf;
 
 use muniko_core::board::{Board, BoardItemView, BoardMode, ObservedBoard};
 use serde::Serialize;
+use tauri::ipc::{InvokeBody, Request};
 use tauri::State;
 
+use crate::constants::board::IMAGE_NAME_HEADER;
+use crate::messages::errors;
 use crate::state::AppState;
 
 /// Everything the Board tab renders, fetched in one call.
@@ -46,6 +49,28 @@ pub async fn board_post_files(state: State<'_, AppState>, paths: Vec<String>) ->
         board.post_file(&PathBuf::from(path)).await.map_err(text)?;
     }
     Ok(())
+}
+
+/// Posts a pasted image sent as the raw request body, with its file name in a header.
+#[tauri::command]
+pub async fn board_post_image(state: State<'_, AppState>, request: Request<'_>) -> Result<(), String> {
+    let InvokeBody::Raw(bytes) = request.body() else { return Err(errors::IMAGE_BODY_MISSING.to_string()) };
+    let name = request.headers().get(IMAGE_NAME_HEADER).and_then(|value| value.to_str().ok());
+    let name = name.ok_or_else(|| errors::IMAGE_NAME_MISSING.to_string())?;
+    let board = state.node.read().await.board();
+    board.post_bytes(name, bytes).await.map(|_| ()).map_err(text)
+}
+
+/// Puts a board image on the system clipboard.
+#[tauri::command]
+pub async fn board_copy_image(state: State<'_, AppState>, item_id: String) -> Result<(), String> {
+    state.node.read().await.copy_board_image(&item_id).await.map_err(text)
+}
+
+/// A board image as a data URL for its preview.
+#[tauri::command]
+pub async fn board_image(state: State<'_, AppState>, item_id: String) -> Result<String, String> {
+    state.node.read().await.board_image(&item_id).await.map_err(text)
 }
 
 #[tauri::command]

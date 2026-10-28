@@ -1,22 +1,43 @@
+import { CLIPBOARD_EMPTY_ICON } from "../constants/icons";
+import { useBoard } from "../hooks/useBoard";
 import { useClipboardHistory } from "../hooks/useClipboardHistory";
-import type { DeviceInfo } from "../types/device";
+import { useImagePaste } from "../hooks/useImagePaste";
+import { isImageItem } from "../lib/boardItems";
+import { CLIPBOARD_SHARED_EMPTY_HINT, CLIPBOARD_SHARED_EMPTY_TITLE, CLIPBOARD_SHARED_TITLE } from "../messages/ui";
 import type { Tone } from "../types/ui";
+import { BoardFeed } from "./BoardFeed";
+import { BoardGate } from "./BoardGate";
 import { ClipboardHistoryCard } from "./ClipboardHistoryCard";
-import { SendTextCard } from "./SendTextCard";
+import { ShareTextCard } from "./ShareTextCard";
 
 export interface ClipboardTabProps {
-  pairedPeers: DeviceInfo[];
   nameOf: (deviceId: string) => string;
   show: (message: string, tone: Tone) => void;
-  onSendText: (peer: DeviceInfo, text: string) => void;
+  onOpenSettings: () => void;
 }
 
-/** Mounted only while its tab is visible, so the history polling stops when the tab changes. */
-export function ClipboardTab({ pairedPeers, nameOf, show, onSendText }: ClipboardTabProps) {
+/** Open shared clipboard: text and pasted images on the board, which everyone on it can copy. Mounted only while visible. */
+export function ClipboardTab({ nameOf, show, onOpenSettings }: ClipboardTabProps) {
+  const board = useBoard(show);
   const history = useClipboardHistory(show);
+  const shared = board.state?.items.filter((item) => item.kind.type === "text" || isImageItem(item)) ?? [];
+  useImagePaste((image) => board.state?.board && board.postImage(image));
+
   return (
     <>
-      <SendTextCard pairedPeers={pairedPeers} onSend={onSendText} />
+      <BoardGate state={board.state} onOpenSettings={onOpenSettings}>
+        <ShareTextCard onShare={board.postText} />
+        <BoardFeed
+          title={CLIPBOARD_SHARED_TITLE}
+          emptyTitle={CLIPBOARD_SHARED_EMPTY_TITLE}
+          emptyHint={CLIPBOARD_SHARED_EMPTY_HINT}
+          emptyIcon={CLIPBOARD_EMPTY_ICON}
+          items={shared}
+          onCopy={board.copy}
+          onDownload={board.download}
+          onDelete={board.remove}
+        />
+      </BoardGate>
       <ClipboardHistoryCard
         items={history.items}
         nameOf={nameOf}

@@ -7,6 +7,7 @@ import { getAppVersion } from "../lib/settingsApi";
 import { PHONE_ACCESS_HINT, PHONE_ACCESS_LABEL } from "../messages/phone";
 import { SETTINGS_AUTOSTART_LABEL, SETTINGS_PHONE_TITLE, SETTINGS_STARTUP_TITLE } from "../messages/settings";
 import type { Tone } from "../types/ui";
+import { BoardSettings } from "./BoardSettings";
 import { SettingsDeviceCard } from "./SettingsDeviceCard";
 import { SettingsDownloadsCard } from "./SettingsDownloadsCard";
 import styles from "./SettingsTab.module.css";
@@ -37,12 +38,13 @@ export function SettingsTab({ phones, show }: SettingsTabProps) {
           onOpen={settings.openFolder}
         />
       )}
-      <Card title={SETTINGS_STARTUP_TITLE}>
-        <Switch checked={autostart.enabled ?? false} disabled={autostart.enabled === null} onChange={autostart.set} label={SETTINGS_AUTOSTART_LABEL} />
-      </Card>
+      <BoardSettings show={show} />
       <Card title={SETTINGS_PHONE_TITLE}>
         <Switch checked={phones.access ?? false} disabled={phones.access === null} onChange={phones.setAccess} label={PHONE_ACCESS_LABEL} />
         <div className={styles.hint}>{PHONE_ACCESS_HINT}</div>
+      </Card>
+      <Card title={SETTINGS_STARTUP_TITLE}>
+        <Switch checked={autostart.enabled ?? false} disabled={autostart.enabled === null} onChange={autostart.set} label={SETTINGS_AUTOSTART_LABEL} />
       </Card>
       <UpdateCard version={version} updater={updater} />
     </>

@@ -1,12 +1,16 @@
 import { invoke } from "@tauri-apps/api/core";
 
-import { BOARD_COMMANDS, PHONE_COMMANDS } from "../constants/board";
+import { BOARD_COMMANDS, IMAGE_NAME_HEADER, PHONE_COMMANDS } from "../constants/board";
 import type { BoardMode, BoardState } from "../types/board";
 import type { PhoneInvite, PhoneSession } from "../types/phone";
 
 export const boardState = () => invoke<BoardState>(BOARD_COMMANDS.state);
 export const boardPostText = (text: string) => invoke<void>(BOARD_COMMANDS.postText, { text });
 export const boardPostFiles = (paths: string[]) => invoke<void>(BOARD_COMMANDS.postFiles, { paths });
+export const boardPostImage = (png: Uint8Array, name: string) =>
+  invoke<void>(BOARD_COMMANDS.postImage, png, { headers: { [IMAGE_NAME_HEADER]: name } });
+export const boardCopyImage = (itemId: string) => invoke<void>(BOARD_COMMANDS.copyImage, { itemId });
+export const boardImage = (itemId: string) => invoke<string>(BOARD_COMMANDS.image, { itemId });
 export const boardDownload = (itemId: string) => invoke<string>(BOARD_COMMANDS.download, { itemId });
 export const boardDelete = (itemId: string) => invoke<void>(BOARD_COMMANDS.delete, { itemId });
 export const boardCreate = (name: string, mode: BoardMode, joinCode?: string) =>

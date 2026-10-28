@@ -1,2 +1,11 @@
 .hint { margin: var(--space-sm) 0 0; color: var(--color-text-muted); font-size: var(--font-size-caption); }
-.actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: var(--space-sm); }
+.details { display: flex; flex-direction: column; gap: var(--space-sm); }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-sm); }
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+}

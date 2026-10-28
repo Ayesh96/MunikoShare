@@ -8,17 +8,21 @@ import {
   boardDownload,
   boardJoin,
   boardLeave,
+  boardCopyImage,
   boardPostFiles,
+  boardPostImage,
   boardPostText,
   boardSetKeeper,
   boardState,
 } from "../lib/boardApi";
+import { isImageItem } from "../lib/boardItems";
+import { toPng } from "../lib/image";
 import { pickFiles } from "../lib/tauriApi";
-import { BOARD_COPIED, BOARD_PICK_FILES_TITLE, boardDownloaded } from "../messages/board";
+import { fileNameStamp } from "../lib/time";
+import { BOARD_COPIED, BOARD_IMAGE_COPIED, BOARD_IMAGE_SHARED, BOARD_PICK_FILES_TITLE, boardDownloaded, pastedImageName } from "../messages/board";
 import type { BoardItem, BoardMode, BoardState, ObservedBoard } from "../types/board";
 import type { Tone } from "../types/ui";
 import { useDebouncedNodeEvents } from "./useDebouncedNodeEvents";
-import { useFileDrop } from "./useFileDrop";
 import { useLoaded } from "./useLoaded";
 import { useRun } from "./useRun";
 
@@ -34,6 +38,8 @@ export interface BoardActions {
   retryJoin: () => Promise<void>;
   dismissFailedJoin: () => void;
   postText: (text: string) => Promise<boolean>;
+  postFiles: (paths: string[]) => Promise<boolean>;
+  postImage: (image: Blob) => Promise<boolean>;
   addFiles: () => Promise<void>;
   copy: (item: BoardItem) => Promise<void>;
   download: (item: BoardItem) => Promise<void>;
@@ -61,7 +67,6 @@ export function useBoard(show: (message: string, tone: Tone) => void): BoardActi
   );
 
   const postFiles = useCallback((paths: string[]) => act(() => boardPostFiles(paths)), [act]);
-  useFileDrop((paths) => paths.length > 0 && postFiles(paths));
 
   // The core cannot join while on a board, so a replacing join leaves first and keeps the target for a retry.
   const join = async (target: ObservedBoard, code?: string, replace = false) => {
@@ -80,6 +85,8 @@ export function useBoard(show: (message: string, tone: Tone) => void): BoardActi
     retryJoin: async () => void (failedJoin && (await join(failedJoin.target, failedJoin.code))),
     dismissFailedJoin: () => setFailedJoin(null),
     postText: (text) => act(() => boardPostText(text)),
+    postFiles,
+    postImage: (image) => act(async () => boardPostImage(await toPng(image), pastedImageName(fileNameStamp())), BOARD_IMAGE_SHARED),
     addFiles: async () => {
       const paths = await pickFiles(BOARD_PICK_FILES_TITLE);
       if (paths.length > 0) await postFiles(paths);
@@ -87,6 +94,7 @@ export function useBoard(show: (message: string, tone: Tone) => void): BoardActi
     copy: async (item) => {
       const { kind } = item;
       if (kind.type === "text") await run(() => copyText(kind.text), BOARD_COPIED);
+      else if (isImageItem(item)) await run(() => boardCopyImage(item.id), BOARD_IMAGE_COPIED);
     },
     download: async (item) => {
       await run(async () => show(boardDownloaded(await boardDownload(item.id)), "success"));

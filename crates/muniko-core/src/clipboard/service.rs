@@ -3,6 +3,7 @@ use std::sync::Arc;
 use super::access::ClipboardAccess;
 use super::client::ClipboardClient;
 use super::content::ClipboardContent;
+use super::png_codec;
 use crate::device::DeviceInfo;
 use crate::error::{MunikoError, Result};
 use crate::identity::Identity;
@@ -37,5 +38,15 @@ impl ClipboardService {
             Some(content) => self.push_content(peer, &content).await,
             None => Err(MunikoError::InvalidState(msg::LOCAL_CLIPBOARD_EMPTY.to_string())),
         }
+    }
+
+    /// Puts a PNG on the local clipboard; the watcher then treats it like any other copy.
+    pub async fn write_png(&self, png: Vec<u8>) -> Result<()> {
+        let (width, height) = png_codec::dimensions(&png)?;
+        let content = ClipboardContent::Image { width, height, png };
+        let access = self.access.clone();
+        tokio::task::spawn_blocking(move || access.write_content(&content))
+            .await
+            .map_err(|e| MunikoError::InvalidState(format!("{}: {e}", msg::TASK_FAILED)))?
     }
 }

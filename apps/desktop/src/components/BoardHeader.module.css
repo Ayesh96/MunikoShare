@@ -1,3 +1,4 @@
-.hint { color: var(--color-text-muted); font-size: var(--font-size-caption); }
-.row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-sm); }
+.hint { color: var(--color-text-muted); font-size: var(--font-size-caption); margin-bottom: var(--space-sm); }
+.row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md); }
+.name { font-weight: var(--font-weight-semibold); }
 .spacer { flex: 1; }

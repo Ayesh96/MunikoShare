@@ -1,2 +1,0 @@
-.buttons { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-top: var(--space-sm); }
-.hint { color: var(--color-text-muted); font-size: var(--font-size-caption); }

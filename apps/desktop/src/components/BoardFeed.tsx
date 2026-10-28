@@ -1,15 +1,21 @@
-import { BOARD_FEED_EMPTY_ICON } from "../constants/icons";
 import { useState } from "react";
 
 import { BOARD_TEXT_COLLAPSE_LENGTH } from "../constants/board";
+import type { IconName } from "../constants/icons";
+import { canPreviewImage, isImageItem } from "../lib/boardItems";
 import { formatBytes } from "../lib/format";
 import { formatTimestamp } from "../lib/time";
-import { BOARD_AUTHOR_OFFLINE, BOARD_COPY_LABEL, BOARD_DELETE_LABEL, BOARD_DOWNLOAD_LABEL, BOARD_FEED_EMPTY_HINT, BOARD_FEED_EMPTY_TITLE, BOARD_FEED_TITLE, BOARD_SAVED_BADGE, BOARD_SHOW_LESS_LABEL, BOARD_SHOW_MORE_LABEL, BOARD_YOU, boardFileRow, boardItemRow } from "../messages/board";
+import { BOARD_AUTHOR_OFFLINE, BOARD_COPY_LABEL, BOARD_DELETE_LABEL, BOARD_DOWNLOAD_LABEL, BOARD_SAVED_BADGE, BOARD_SHOW_LESS_LABEL, BOARD_SHOW_MORE_LABEL, BOARD_YOU, boardFileRow, boardItemRow } from "../messages/board";
 import type { BoardItem } from "../types/board";
+import { BoardImageThumbnail } from "./BoardImageThumbnail";
 import styles from "./BoardItemList.module.css";
 import { Badge, Button, Card, EmptyState, List, ListItem } from "./ui";
 
 export interface BoardFeedProps {
+  title: string;
+  emptyTitle: string;
+  emptyHint: string;
+  emptyIcon: IconName;
   items: BoardItem[];
   onCopy: (item: BoardItem) => void;
   onDownload: (item: BoardItem) => void;
@@ -24,7 +30,9 @@ function describe(item: BoardItem): { title: string; subtitle: string } {
   return { title: kind.name, subtitle: boardFileRow(formatBytes(kind.size), author, time) };
 }
 
-interface ItemActionsProps extends Omit<BoardFeedProps, "items"> {
+type HandlerProps = Pick<BoardFeedProps, "onCopy" | "onDownload" | "onDelete">;
+
+interface ItemActionsProps extends HandlerProps {
   item: BoardItem;
   expanded: boolean;
   onToggleExpanded: (item: BoardItem) => void;
@@ -42,11 +50,13 @@ function ItemActions({ item, expanded, onToggleExpanded, onCopy, onDownload, onD
         <Button size="sm" variant="secondary" label={expanded ? BOARD_SHOW_LESS_LABEL : BOARD_SHOW_MORE_LABEL} onClick={() => onToggleExpanded(item)} />
       )}
       {item.kind.type === "file" && item.heldLocally && <Badge tone="success" label={BOARD_SAVED_BADGE} />}
-      {item.kind.type === "text" ? (
-        <Button size="sm" label={BOARD_COPY_LABEL} onClick={() => onCopy(item)} />
-      ) : (
+      {(item.kind.type === "text" || isImageItem(item)) && (
+        <Button size="sm" label={BOARD_COPY_LABEL} disabled={unavailable} onClick={() => onCopy(item)} />
+      )}
+      {item.kind.type === "file" && (
         <Button
           size="sm"
+          variant={isImageItem(item) ? "secondary" : "primary"}
           label={unavailable ? BOARD_AUTHOR_OFFLINE : BOARD_DOWNLOAD_LABEL}
           disabled={unavailable}
           onClick={() => onDownload(item)}
@@ -61,7 +71,7 @@ function collapsed(title: string, item: BoardItem, expanded: boolean): string {
   return isLongText(item) && !expanded ? `${title.slice(0, BOARD_TEXT_COLLAPSE_LENGTH)}…` : title;
 }
 
-export function BoardFeed({ items, onCopy, onDownload, onDelete }: BoardFeedProps) {
+export function BoardFeed({ title, emptyTitle, emptyHint, emptyIcon, items, onCopy, onDownload, onDelete }: BoardFeedProps) {
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
   const toggle = (item: BoardItem) =>
     setExpandedIds((current) => {
@@ -70,20 +80,21 @@ export function BoardFeed({ items, onCopy, onDownload, onDelete }: BoardFeedProp
       return next;
     });
   return (
-    <Card title={BOARD_FEED_TITLE}>
+    <Card title={title}>
       {items.length === 0 ? (
-        <EmptyState icon={BOARD_FEED_EMPTY_ICON} title={BOARD_FEED_EMPTY_TITLE} hint={BOARD_FEED_EMPTY_HINT} />
+        <EmptyState icon={emptyIcon} title={emptyTitle} hint={emptyHint} />
       ) : (
         <List>
           {items.map((item) => {
-            const { title, subtitle } = describe(item);
+            const described = describe(item);
             const expanded = expandedIds.has(item.id);
             return (
               <ListItem
                 key={item.id}
-                title={collapsed(title, item, expanded)}
-                subtitle={subtitle}
+                title={collapsed(described.title, item, expanded)}
+                subtitle={described.subtitle}
                 wrap={item.kind.type === "text"}
+                leading={canPreviewImage(item) ? <BoardImageThumbnail itemId={item.id} /> : undefined}
                 trailing={
                   <ItemActions item={item} expanded={expanded} onToggleExpanded={toggle} onCopy={onCopy} onDownload={onDownload} onDelete={onDelete} />
                 }

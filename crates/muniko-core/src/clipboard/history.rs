@@ -1,13 +1,12 @@
 use std::sync::{Arc, Mutex};
 
-use base64::engine::general_purpose::STANDARD;
-use base64::Engine;
 use serde::Serialize;
 
 use super::access::ClipboardAccess;
 use super::content::ClipboardContent;
+use crate::util::data_url::png_data_url;
 use crate::util::lock::lock;
-use crate::constants::clipboard::{HISTORY_CAPACITY, HISTORY_PREVIEW_CHARS, PNG_DATA_URL_PREFIX};
+use crate::constants::clipboard::{HISTORY_CAPACITY, HISTORY_PREVIEW_CHARS};
 use crate::error::{MunikoError, Result};
 use crate::messages::clipboard as msg;
 use crate::util::time::unix_now;
@@ -102,7 +101,7 @@ impl ClipboardHistory {
 
     /// The image as a `data:image/png;base64,...` URL for direct use in an `<img>`.
     pub fn image_data_url(&self, id: &str) -> Option<String> {
-        self.image_png(id).map(|png| format!("{PNG_DATA_URL_PREFIX}{}", STANDARD.encode(png)))
+        self.image_png(id).map(|png| png_data_url(&png))
     }
 
     /// Writes the item to the system clipboard. This is a deliberate local copy,

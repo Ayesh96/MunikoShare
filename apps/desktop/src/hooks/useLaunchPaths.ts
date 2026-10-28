@@ -5,10 +5,11 @@ import { takeLaunchPaths } from "../lib/settingsApi";
 
 export interface LaunchPaths {
   paths: string[];
+  add: (paths: string[]) => void;
   dismiss: () => void;
 }
 
-/** Paths passed on the command line (first or forwarded launch); drained from the shell's queue. */
+/** Paths waiting for a send target: from the command line, a forwarded launch, or a window drop. */
 export function useLaunchPaths(): LaunchPaths {
   const [paths, setPaths] = useState<string[]>([]);
 
@@ -31,5 +32,9 @@ export function useLaunchPaths(): LaunchPaths {
     };
   }, []);
 
-  return { paths, dismiss: useCallback(() => setPaths([]), []) };
+  return {
+    paths,
+    add: useCallback((added: string[]) => setPaths((current) => [...current, ...added]), []),
+    dismiss: useCallback(() => setPaths([]), []),
+  };
 }

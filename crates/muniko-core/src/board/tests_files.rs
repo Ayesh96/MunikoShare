@@ -267,3 +267,17 @@ async fn tombstone_deletes_cached_content_everywhere() {
     wait_for("b to drop the content", || !cache_path(root.path(), "b", &sha).exists()).await;
     shutdown(vec![a, b, c]).await;
 }
+
+#[tokio::test]
+async fn posted_bytes_can_be_read_back_on_another_device() {
+    let root = tempfile::tempdir().unwrap();
+    let (mut a, mut b, _c) = files_trio(root.path()).await;
+    let bytes = content(SMALL, 7);
+    a.runtime.start().await.unwrap();
+    b.runtime.start().await.unwrap();
+    let posted = a.service.post_bytes("pasted.png", &bytes).await.unwrap();
+    assert!(posted.held_locally);
+    wait_for("b to see the pasted file", || file_view(&b, "pasted.png").is_some_and(|v| v.available)).await;
+    assert_eq!(b.service.read_file(&posted.id).await.unwrap(), bytes);
+    assert!(a.service.post_bytes("bad/name.png", &bytes).await.is_err());
+}

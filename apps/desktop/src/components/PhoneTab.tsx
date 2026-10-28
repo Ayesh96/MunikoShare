@@ -5,7 +5,7 @@ import { PHONE_POLL_INTERVAL_MS } from "../constants/events";
 import { useInterval } from "../hooks/useInterval";
 import type { Phones } from "../hooks/usePhones";
 import { PHONE_CONNECT_LABEL, PHONE_TITLE } from "../messages/phone";
-import { PHONE_ACCESS_OFF_HINT, PHONE_ACCESS_OFF_TITLE } from "../messages/settings";
+import { PHONE_ACCESS_OFF_HINT, PHONE_ACCESS_OFF_TITLE, PHONE_ACCESS_ON_LABEL } from "../messages/settings";
 import type { PhoneSession } from "../types/phone";
 import { ConnectPhoneModal } from "./ConnectPhoneModal";
 import { PhoneList } from "./PhoneList";
@@ -24,7 +24,13 @@ export function PhoneTab({ phones }: { phones: Phones }) {
         {phones.access ? (
           <Button label={PHONE_CONNECT_LABEL} onClick={() => setConnecting(true)} />
         ) : (
-          <EmptyState icon={PHONE_ACCESS_OFF_ICON} title={PHONE_ACCESS_OFF_TITLE} hint={PHONE_ACCESS_OFF_HINT} />
+          <EmptyState
+            icon={PHONE_ACCESS_OFF_ICON}
+            title={PHONE_ACCESS_OFF_TITLE}
+            hint={PHONE_ACCESS_OFF_HINT}
+            actionLabel={PHONE_ACCESS_ON_LABEL}
+            onAction={() => phones.setAccess(true)}
+          />
         )}
       </Card>
       {phones.access && (

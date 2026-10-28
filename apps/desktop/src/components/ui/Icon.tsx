@@ -1,4 +1,4 @@
-import { Clipboard, FolderKanban, FolderUp, History, Pin, Radar, Smartphone, Upload, X, type LucideIcon } from "lucide-react";
+import { Clipboard, FolderKanban, FolderUp, History, Pin, Radar, Send, Settings, Smartphone, Upload, X, type LucideIcon } from "lucide-react";
 
 import { ICON_SIZE, ICON_STROKE, type IconName } from "../../constants/icons";
 
@@ -12,6 +12,8 @@ const ICONS: Record<IconName, LucideIcon> = {
   pin: Pin,
   board: FolderKanban,
   close: X,
+  settings: Settings,
+  send: Send,
 };
 
 export interface IconProps {

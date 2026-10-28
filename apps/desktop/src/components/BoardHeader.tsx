@@ -4,6 +4,8 @@ import {
   BOARD_LEAVE_LABEL,
   BOARD_MODE_OPEN,
   BOARD_MODE_PROTECTED,
+  BOARD_SETTINGS_HINT,
+  BOARD_SETTINGS_TITLE,
 } from "../messages/board";
 import type { Board } from "../types/board";
 import styles from "./BoardHeader.module.css";
@@ -18,8 +20,10 @@ export interface BoardHeaderProps {
 
 export function BoardHeader({ board, keeper, onKeeperChange, onLeave }: BoardHeaderProps) {
   return (
-    <Card title={board.name}>
+    <Card title={BOARD_SETTINGS_TITLE}>
+      <div className={styles.hint}>{BOARD_SETTINGS_HINT}</div>
       <div className={styles.row}>
+        <span className={styles.name}>{board.name}</span>
         <Badge tone={board.mode === "open" ? "neutral" : "success"} label={board.mode === "open" ? BOARD_MODE_OPEN : BOARD_MODE_PROTECTED} />
         <span className={styles.spacer} />
         <Button size="sm" variant="secondary" label={BOARD_LEAVE_LABEL} onClick={onLeave} />

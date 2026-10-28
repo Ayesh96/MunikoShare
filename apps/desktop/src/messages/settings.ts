@@ -40,4 +40,5 @@ export const sendToSummary = (count: number) => `${count} ${count === 1 ? "item"
 export const sendToStarted = (name: string) => `Sending to ${name}`;
 
 export const PHONE_ACCESS_OFF_TITLE = "Phone access is off";
-export const PHONE_ACCESS_OFF_HINT = "Turn it on in Settings to connect phones.";
+export const PHONE_ACCESS_OFF_HINT = "Turn it on to send and receive files with phones on this network, right from their browser.";
+export const PHONE_ACCESS_ON_LABEL = "Turn on phone access";

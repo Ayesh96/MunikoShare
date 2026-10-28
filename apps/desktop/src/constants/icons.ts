@@ -11,16 +11,27 @@ export type IconName =
   | "phone"
   | "pin"
   | "board"
-  | "close";
+  | "close"
+  | "settings"
+  | "send";
 
 export const NEARBY_EMPTY_ICON: IconName = "nearby";
 export const SEND_TO_EMPTY_ICON: IconName = "nearby";
 export const PHONE_ACCESS_OFF_ICON: IconName = "phone";
 export const PHONE_EMPTY_ICON: IconName = "phone";
-export const BOARD_FEED_EMPTY_ICON: IconName = "pin";
+export const BOARD_FILES_EMPTY_ICON: IconName = "board";
 export const BOARD_SETUP_ICON: IconName = "board";
 export const SEND_FILES_ICON: IconName = "sendFiles";
 export const SEND_CLIPBOARD_ICON: IconName = "clipboard";
 export const SEND_FOLDER_ICON: IconName = "sendFolder";
 export const HISTORY_EMPTY_ICON: IconName = "history";
 export const CLIPBOARD_EMPTY_ICON: IconName = "clipboard";
+export const BOARD_SHARE_FILES_ICON: IconName = "sendFiles";
+export const CLIPBOARD_SHARE_ICON: IconName = "send";
+export const DEVICE_OPTIONS_ICON: IconName = "settings";
+export const TAB_CLIPBOARD_ICON: IconName = "clipboard";
+export const TAB_FILES_ICON: IconName = "board";
+export const TAB_DEVICES_ICON: IconName = "nearby";
+export const TAB_PHONE_ICON: IconName = "phone";
+export const TAB_HISTORY_ICON: IconName = "history";
+export const TAB_SETTINGS_ICON: IconName = "settings";

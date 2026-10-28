@@ -26,6 +26,7 @@ use crate::pairing::{PairingProfile, PairingService};
 use crate::server::{HttpServer, RouteProvider};
 use crate::transfer::{OfferResponder, TransferClient, TransferRoutes};
 use crate::trust::{SqliteTrustStore, TrustStore, TrustedDevice};
+use crate::util::data_url::png_data_url;
 use crate::util::fs::ensure_dir;
 use crate::util::peers::{LivePeers, PeerDirectory};
 use crate::web::WebRoutes;
@@ -273,6 +274,16 @@ impl MunikoNode {
 
     pub fn clear_clipboard_history(&self) {
         self.clipboard_shared.history.clear()
+    }
+
+    /// Puts a board image on the system clipboard, fetching it from a peer first if needed.
+    pub async fn copy_board_image(&self, item_id: &str) -> Result<()> {
+        self.clipboard.write_png(self.board.read_file(item_id).await?).await
+    }
+
+    /// A board image as a data URL for previews, fetched from a peer first if needed.
+    pub async fn board_image(&self, item_id: &str) -> Result<String> {
+        Ok(png_data_url(&self.board.read_file(item_id).await?))
     }
 
     /// The Network Board facade; the desktop app calls it directly.

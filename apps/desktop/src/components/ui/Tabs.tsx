@@ -1,8 +1,11 @@
+import type { IconName } from "../../constants/icons";
+import { Icon } from "./Icon";
 import styles from "./Tabs.module.css";
 
 export interface TabItem {
   id: string;
   label: string;
+  icon?: IconName;
 }
 
 export interface TabsProps {
@@ -23,7 +26,8 @@ export function Tabs({ items, activeId, onChange }: TabsProps) {
           className={`${styles.tab} ${item.id === activeId ? styles.active : ""}`}
           onClick={() => onChange(item.id)}
         >
-          {item.label}
+          {item.icon && <Icon name={item.icon} />}
+          <span className={styles.label}>{item.label}</span>
         </button>
       ))}
     </div>

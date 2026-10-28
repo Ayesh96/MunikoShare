@@ -1,5 +1,6 @@
 //! Shared helpers used by more than one module.
 
+pub mod data_url;
 pub mod errors;
 pub mod fingerprint;
 pub mod fs;

@@ -6,7 +6,7 @@ export const deviceEndpoint = (addresses: string[], port: number) =>
   `${addresses.length > 0 ? addresses.join(", ") : NO_ADDRESS} · port ${port}`;
 export const LOADING_DEVICE = "Starting...";
 
-export const TAB_DEVICES_LABEL = "Devices";
+export const TAB_DEVICES_LABEL = "Nearby";
 export const TAB_HISTORY_LABEL = "History";
 
 export const NEARBY_TITLE = "Nearby devices";
@@ -14,19 +14,22 @@ export const NEARBY_EMPTY_TITLE = "No devices found";
 export const NEARBY_EMPTY_HINT = "Open Muniko Share on another device on the same Wi-Fi or network, or add one by its IP address.";
 export const SEND_FILES_LABEL = "Send files";
 export const SEND_CLIPBOARD_LABEL = "Send clipboard";
-export const PAIR_LABEL = "Pair";
 export const UNPAIR_LABEL = "Unpair";
-export const PAIRED_BADGE = "Paired";
 export const PICK_FILES_TITLE = "Choose files to send";
 export const SEND_FOLDER_LABEL = "Send folder";
 export const PICK_FOLDER_TITLE = "Choose a folder to send";
-export const AUTO_ACCEPT_LABEL = "Auto-accept";
+export const AUTO_ACCEPT_LABEL = "Accept files without asking";
+export const DEVICE_OPTIONS_LABEL = "Options";
+export const DEVICE_OPTIONS_HIDE_LABEL = "Hide options";
+export const PAIR_TO_SEND_LABEL = "Pair to share";
+export const unpairedSubtitle = (os: string) => `${os} · pair once to start sharing`;
+export const DEVICES_DROP_HINT = "Drop files anywhere in this window to send them to a paired device.";
 
 export const HISTORY_TITLE = "History";
 export const HISTORY_EMPTY_TITLE = "No history yet";
 export const HISTORY_EMPTY_HINT = "Sent and received files, pairing and clipboard show up here.";
 export const CLEAR_HISTORY_LABEL = "Clear history";
-export const HISTORY_EMPTY_ACTION = "Go to devices";
+export const HISTORY_EMPTY_ACTION = "Go to Nearby Devices";
 export const HISTORY_ERROR_TITLE = "History didn't load";
 export const HISTORY_ERROR_HINT = "Muniko Share couldn't read the saved history file. Try again, or restart the app if this repeats.";
 export const RETRY_LABEL = "Try again";
@@ -68,10 +71,6 @@ export const DIRECTION_OUTGOING = "to";
 export const transferLabel = (direction: string, device: string, percent: number, done: string, total: string) =>
   `${direction} ${device} · ${percent}% (${done} / ${total})`;
 
-export const SEND_TEXT_TITLE = "Send text";
-export const SEND_TEXT_PLACEHOLDER = "Type text to send to a paired device";
-export const sendTextTo = (device: string) => `Send text to ${device}`;
-export const SEND_TEXT_NO_PAIRED = "Pair a device to send text.";
 
 export const CLOSE_LABEL = "Close";
 export const DISMISS_LABEL = "Dismiss";
@@ -87,10 +86,16 @@ export const deviceAdded = (name: string) => `Added ${name}`;
 export const waitingForAccept = (device: string) => `Waiting for ${device} to accept…`;
 
 export const TAB_CLIPBOARD_LABEL = "Clipboard";
-export const CLIPBOARD_SYNC_LABEL = "Clipboard sync";
+export const CLIPBOARD_SYNC_LABEL = "Sync clipboard automatically";
 export const CLIPBOARD_SYNC_HINT =
   "Clipboard sync is automatic both ways, but only when it is turned on on both devices.";
 
+export const CLIPBOARD_SHARE_TITLE = "Share to everyone";
+export const CLIPBOARD_SHARE_PLACEHOLDER = "Paste or type text. Everyone on the network can copy it. Paste an image to share it right away.";
+export const CLIPBOARD_SHARE_LABEL = "Share";
+export const CLIPBOARD_SHARED_TITLE = "Shared clipboard";
+export const CLIPBOARD_SHARED_EMPTY_TITLE = "Nothing shared yet";
+export const CLIPBOARD_SHARED_EMPTY_HINT = "Text and images anyone on the network shares show up here, ready to copy.";
 export const CLIPBOARD_HISTORY_TITLE = "Clipboard history";
 export const CLIPBOARD_EMPTY_TITLE = "Clipboard history is empty";
 export const CLIPBOARD_EMPTY_HINT = "Copied and received items show up here.";

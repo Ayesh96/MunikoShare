@@ -4,7 +4,7 @@ import styles from "./App.module.css";
 import { AddDeviceModal } from "./components/AddDeviceModal";
 import { BoardTab } from "./components/BoardTab";
 import { ClipboardTab } from "./components/ClipboardTab";
-import { DeviceList } from "./components/DeviceList";
+import { DevicesTab } from "./components/DevicesTab";
 import { Header } from "./components/Header";
 import { HistoryList } from "./components/HistoryList";
 import { OfferModal } from "./components/OfferModal";
@@ -16,6 +16,7 @@ import { SettingsTab } from "./components/SettingsTab";
 import { TransferList } from "./components/TransferList";
 import { Banner, Tabs } from "./components/ui";
 import { TAB_BOARD, TAB_CLIPBOARD, TAB_DEVICES, TAB_HISTORY, TAB_PHONE, TAB_SETTINGS } from "./constants/app";
+import { TAB_CLIPBOARD_ICON, TAB_DEVICES_ICON, TAB_FILES_ICON, TAB_HISTORY_ICON, TAB_PHONE_ICON, TAB_SETTINGS_ICON } from "./constants/icons";
 import { useAddDevice } from "./hooks/useAddDevice";
 import { useAutoAccept } from "./hooks/useAutoAccept";
 import { useClipboardNotice } from "./hooks/useClipboardNotice";
@@ -41,16 +42,16 @@ import { sendToStarted, TAB_SETTINGS_LABEL } from "./messages/settings";
 import { TAB_CLIPBOARD_LABEL, TAB_DEVICES_LABEL, TAB_HISTORY_LABEL } from "./messages/ui";
 
 const TABS = [
-  { id: TAB_DEVICES, label: TAB_DEVICES_LABEL },
-  { id: TAB_BOARD, label: TAB_BOARD_LABEL },
-  { id: TAB_CLIPBOARD, label: TAB_CLIPBOARD_LABEL },
-  { id: TAB_PHONE, label: TAB_PHONE_LABEL },
-  { id: TAB_HISTORY, label: TAB_HISTORY_LABEL },
-  { id: TAB_SETTINGS, label: TAB_SETTINGS_LABEL },
+  { id: TAB_CLIPBOARD, label: TAB_CLIPBOARD_LABEL, icon: TAB_CLIPBOARD_ICON },
+  { id: TAB_BOARD, label: TAB_BOARD_LABEL, icon: TAB_FILES_ICON },
+  { id: TAB_DEVICES, label: TAB_DEVICES_LABEL, icon: TAB_DEVICES_ICON },
+  { id: TAB_PHONE, label: TAB_PHONE_LABEL, icon: TAB_PHONE_ICON },
+  { id: TAB_HISTORY, label: TAB_HISTORY_LABEL, icon: TAB_HISTORY_ICON },
+  { id: TAB_SETTINGS, label: TAB_SETTINGS_LABEL, icon: TAB_SETTINGS_ICON },
 ];
 
 export function App() {
-  const [tab, setTab] = useState(TAB_DEVICES);
+  const [tab, setTab] = useState(TAB_CLIPBOARD);
   const device = useLocalDevice();
   const { peers, loading: peersLoading } = usePeers();
   const trusted = useTrusted();
@@ -79,7 +80,8 @@ export function App() {
       <TransferList transfers={transfers} waitingFor={pendingSends.waiting} nameOf={nameOf} />
       <Tabs items={TABS} activeId={tab} onChange={setTab} />
       {tab === TAB_DEVICES ? (
-        <DeviceList
+        <DevicesTab
+          onDropPaths={launch.add}
           peers={peers}
           loading={peersLoading}
           onAddDevice={addDevice.open}
@@ -95,16 +97,11 @@ export function App() {
           onUnpair={actions.unpairDevice}
         />
       ) : tab === TAB_BOARD ? (
-        <BoardTab show={show} />
+        <BoardTab show={show} onOpenSettings={() => setTab(TAB_SETTINGS)} />
       ) : tab === TAB_PHONE ? (
         <PhoneTab phones={phones} />
       ) : tab === TAB_CLIPBOARD ? (
-        <ClipboardTab
-          pairedPeers={pairedPeers}
-          nameOf={nameOf}
-          show={show}
-          onSendText={actions.sendTextTo}
-        />
+        <ClipboardTab nameOf={nameOf} show={show} onOpenSettings={() => setTab(TAB_SETTINGS)} />
       ) : tab === TAB_SETTINGS ? (
         <SettingsTab phones={phones} show={show} />
       ) : (

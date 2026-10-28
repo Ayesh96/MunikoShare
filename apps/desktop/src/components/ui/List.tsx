@@ -13,17 +13,22 @@ export interface ListItemProps {
   trailing?: ReactNode;
   /** Show the whole title on several lines instead of one truncated line. */
   wrap?: boolean;
+  /** Extra content shown under the row, such as expanded options. */
+  details?: ReactNode;
 }
 
-export function ListItem({ title, subtitle, leading, trailing, wrap }: ListItemProps) {
+export function ListItem({ title, subtitle, leading, trailing, wrap, details }: ListItemProps) {
   return (
     <li className={styles.item}>
-      {leading && <span className={styles.leading}>{leading}</span>}
-      <span className={styles.text}>
-        <span className={wrap ? `${styles.title} ${styles.titleWrap}` : styles.title}>{title}</span>
-        {subtitle && <span className={styles.subtitle}>{subtitle}</span>}
-      </span>
-      {trailing}
+      <div className={styles.row}>
+        {leading && <span className={styles.leading}>{leading}</span>}
+        <span className={styles.text}>
+          <span className={wrap ? `${styles.title} ${styles.titleWrap}` : styles.title}>{title}</span>
+          {subtitle && <span className={styles.subtitle}>{subtitle}</span>}
+        </span>
+        {trailing && <span className={styles.trailing}>{trailing}</span>}
+      </div>
+      {details && <div className={styles.details}>{details}</div>}
     </li>
   );
 }

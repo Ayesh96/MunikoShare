@@ -1,0 +1,2 @@
+.row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-sm) var(--space-md); }
+.hint { flex: 1 1 var(--size-list-text-min); color: var(--color-text-muted); font-size: var(--font-size-caption); }
