@@ -1,6 +1,7 @@
 export const ICON_SIZE = 20;
 export const ICON_STROKE = 1.5;
 export const EMPTY_ICON_SIZE = 32;
+export const ICON_TILE_SIZE = 40;
 
 export type IconName =
   | "nearby"
@@ -18,7 +19,10 @@ export type IconName =
   | "download"
   | "trash"
   | "expand"
-  | "collapse";
+  | "collapse"
+  | "text"
+  | "file"
+  | "image";
 
 export const NEARBY_EMPTY_ICON: IconName = "nearby";
 export const SEND_TO_EMPTY_ICON: IconName = "nearby";

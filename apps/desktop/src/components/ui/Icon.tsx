@@ -1,4 +1,4 @@
-import { ChevronDown, ChevronUp, Clipboard, Copy, Download, FolderKanban, FolderUp, History, Pin, Radar, Send, Settings, Smartphone, Trash2, Upload, X, type LucideIcon } from "lucide-react";
+import { ChevronDown, ChevronUp, Clipboard, Copy, Download, File, FolderKanban, FolderUp, History, Image, Pin, Radar, Send, Settings, Smartphone, Trash2, Type, Upload, X, type LucideIcon } from "lucide-react";
 
 import { ICON_SIZE, ICON_STROKE, type IconName } from "../../constants/icons";
 
@@ -19,6 +19,9 @@ const ICONS: Record<IconName, LucideIcon> = {
   trash: Trash2,
   expand: ChevronDown,
   collapse: ChevronUp,
+  text: Type,
+  file: File,
+  image: Image,
 };
 
 export interface IconProps {

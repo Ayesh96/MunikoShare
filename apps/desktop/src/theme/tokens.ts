@@ -17,6 +17,7 @@ export const colors = {
     badgeBg: "#ebe7da",
     overlay: "rgba(22, 26, 23, 0.5)",
     track: "#ddd8cb",
+    overlayBar: "rgba(255, 255, 255, 0.78)",
   },
   dark: {
     bg: "#161a17",
@@ -35,6 +36,7 @@ export const colors = {
     badgeBg: "#2a312b",
     overlay: "rgba(0, 0, 0, 0.6)",
     track: "#323932",
+    overlayBar: "rgba(32, 37, 33, 0.78)",
   },
 } as const;
 
@@ -49,7 +51,7 @@ export const border = { hairline: "1px", focus: "2px" } as const;
 export const shadow = { card: "0 1px 3px rgba(0, 0, 0, 0.12)" } as const;
 export const shadowModal = { modal: "0 8px 32px rgba(0, 0, 0, 0.3)" } as const;
 export const motion = { press: "80ms", hover: "120ms", modal: "160ms" } as const;
-export const size = { modalWidth: "420px", progressHeight: "8px", codeWidth: "11ch", switchWidth: "36px", switchHeight: "20px", switchThumb: "16px", thumbnail: "64px", imagePreview: "120px", draftPreview: "120px", iconSize: "20px", skeletonRow: "56px", minTarget: "32px", touchTarget: "44px", listTextMin: "160px" } as const;
+export const size = { modalWidth: "420px", progressHeight: "8px", codeWidth: "11ch", switchWidth: "36px", switchHeight: "20px", switchThumb: "16px", thumbnail: "64px", imagePreview: "120px", draftPreview: "120px", iconSize: "20px", skeletonRow: "56px", minTarget: "32px", touchTarget: "44px", listTextMin: "160px", overlayBlur: "8px", overlayClearance: "56px" } as const;
 export const zIndex = { modal: "100" } as const;
 export const fontFamilyMono = "'JetBrains Mono', Menlo, Consolas, monospace";
 export const fontFamily = "'Source Sans 3', 'Segoe UI', 'Helvetica Neue', sans-serif";
