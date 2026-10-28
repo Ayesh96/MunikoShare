@@ -34,7 +34,7 @@ export function HistoryList({ entries, loading, failed, nameOf, onClear, onRetry
                   key={entry.id}
                   title={historyTitle(entry)}
                   subtitle={historyRow(nameOf(entry.deviceId), formatTimestamp(entry.timestamp))}
-                  leading={<Badge tone={badge.tone} label={badge.label} />}
+                  trailing={<Badge tone={badge.tone} label={badge.label} />}
                 />
               );
             })}

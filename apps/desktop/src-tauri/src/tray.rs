@@ -1,10 +1,11 @@
 //! System tray: keeps the app running in the background while the window is hidden.
 
+use tauri::image::Image;
 use tauri::menu::{Menu, MenuEvent, MenuItem};
 use tauri::tray::{MouseButton, MouseButtonState, TrayIconBuilder, TrayIconEvent};
 use tauri::{AppHandle, Manager, Window, WindowEvent};
 
-use crate::constants::app::{MAIN_WINDOW_LABEL, TRAY_ID, TRAY_MENU_OPEN_ID, TRAY_MENU_QUIT_ID};
+use crate::constants::app::{MAIN_WINDOW_LABEL, TRAY_ICON, TRAY_ID, TRAY_MENU_OPEN_ID, TRAY_MENU_QUIT_ID};
 use crate::messages::tray as msg;
 
 /// Builds the tray icon and its menu.
@@ -12,12 +13,9 @@ pub fn install(app: &AppHandle) -> tauri::Result<()> {
     let open = MenuItem::with_id(app, TRAY_MENU_OPEN_ID, msg::TRAY_MENU_OPEN_LABEL, true, None::<&str>)?;
     let quit = MenuItem::with_id(app, TRAY_MENU_QUIT_ID, msg::TRAY_MENU_QUIT_LABEL, true, None::<&str>)?;
     let menu = Menu::with_items(app, &[&open, &quit])?;
-    let Some(icon) = app.default_window_icon().cloned() else {
-        tracing::warn!("{}", msg::TRAY_NO_ICON);
-        return Ok(());
-    };
     TrayIconBuilder::with_id(TRAY_ID)
-        .icon(icon)
+        .icon(Image::from_bytes(TRAY_ICON)?)
+        .icon_as_template(cfg!(target_os = "macos"))
         .tooltip(msg::TRAY_TOOLTIP)
         .menu(&menu)
         .show_menu_on_left_click(false)
