@@ -29,8 +29,10 @@ export const PHONE_DEVICE_PREFIX = "phone:";
 export const QR_SIZE_PX = 220;
 export const QR_MARGIN_MODULES = 1;
 
-/** Text items longer than this collapse behind "Show more". */
-export const BOARD_TEXT_COLLAPSE_LENGTH = 160;
+/** Text tiles clamp to this many lines; longer text offers "Show more". */
+export const BOARD_TEXT_PREVIEW_LINES = 3;
+/** Rough characters that fit the clamped preview of one compact tile. */
+export const BOARD_TEXT_PREVIEW_LENGTH = 40;
 
 /** Name prefix of images pasted from the clipboard; pastedImageName builds names from it. */
 export const PASTED_IMAGE_PREFIX = "Clipboard image ";

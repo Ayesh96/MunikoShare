@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { BOARD_TEXT_COLLAPSE_LENGTH, PASTED_IMAGE_PREFIX } from "../constants/board";
+import { BOARD_TEXT_PREVIEW_LENGTH, BOARD_TEXT_PREVIEW_LINES, PASTED_IMAGE_PREFIX } from "../constants/board";
 import { ICON_TILE_SIZE, type IconName } from "../constants/icons";
 import { canPreviewImage, isImageItem } from "../lib/boardItems";
 import { formatBytes } from "../lib/format";
@@ -35,7 +35,9 @@ function describe(item: BoardItem): { title: string; subtitle: string } {
 type HandlerProps = Pick<BoardFeedProps, "onCopy" | "onDownload" | "onDelete">;
 
 function isLongText(item: BoardItem): boolean {
-  return item.kind.type === "text" && item.kind.text.length > BOARD_TEXT_COLLAPSE_LENGTH;
+  if (item.kind.type !== "text") return false;
+  const { text } = item.kind;
+  return text.length > BOARD_TEXT_PREVIEW_LENGTH || text.split("\n").length > BOARD_TEXT_PREVIEW_LINES;
 }
 
 function isUnavailable(item: BoardItem): boolean {
@@ -49,9 +51,9 @@ function ItemActions({ item, onCopy, onDownload, onDelete }: { item: BoardItem }
   const disabled = isUnavailable(item);
   return (
     <div className={styles.overlay}>
-      {downloads && <Button size="sm" variant="tertiary" iconOnly icon="download" label={BOARD_DOWNLOAD_LABEL} disabled={disabled} onClick={() => onDownload(item)} />}
-      {item.mine && <Button size="sm" variant="tertiary" iconOnly icon="trash" label={BOARD_DELETE_LABEL} onClick={() => onDelete(item)} />}
-      {copies && <Button size="sm" variant="tertiary" iconOnly icon="copy" label={BOARD_COPY_LABEL} disabled={disabled} onClick={() => onCopy(item)} />}
+      {downloads && <Button size="xs" variant="tertiary" iconOnly icon="download" label={BOARD_DOWNLOAD_LABEL} disabled={disabled} onClick={() => onDownload(item)} />}
+      {item.mine && <Button size="xs" variant="tertiary" iconOnly icon="trash" label={BOARD_DELETE_LABEL} onClick={() => onDelete(item)} />}
+      {copies && <Button size="xs" variant="tertiary" iconOnly icon="copy" label={BOARD_COPY_LABEL} disabled={disabled} onClick={() => onCopy(item)} />}
     </div>
   );
 }
@@ -72,10 +74,6 @@ function ItemMedia({ item }: { item: BoardItem }) {
   );
 }
 
-function collapsed(text: string, item: BoardItem, expanded: boolean): string {
-  return isLongText(item) && !expanded ? `${text.slice(0, BOARD_TEXT_COLLAPSE_LENGTH)}…` : text;
-}
-
 interface BoardTileProps extends HandlerProps {
   item: BoardItem;
   expanded: boolean;
@@ -86,14 +84,20 @@ function BoardTile({ item, expanded, onToggleExpanded, ...handlers }: BoardTileP
   const { title, subtitle } = describe(item);
   const isText = item.kind.type === "text";
   return (
-    <li className={styles.tile}>
-      {isText ? <div className={styles.text}>{collapsed(title, item, expanded)}</div> : <ItemMedia item={item} />}
+    <li className={expanded ? `${styles.tile} ${styles.expanded}` : styles.tile}>
+      {isText ? (
+        <div className={expanded ? `${styles.text} ${styles.textOpen}` : styles.text} style={expanded ? undefined : { WebkitLineClamp: BOARD_TEXT_PREVIEW_LINES }}>
+          {title}
+        </div>
+      ) : (
+        <ItemMedia item={item} />
+      )}
       <ItemActions item={item} {...handlers} />
       <div className={styles.info}>
-        {!isText && <span className={styles.title}>{title}</span>}
-        <span className={styles.subtitle}>{subtitle}</span>
+        {!isText && <span className={styles.title} title={title}>{title}</span>}
+        <span className={styles.subtitle} title={subtitle}>{subtitle}</span>
         {isLongText(item) && (
-          <Button size="sm" variant="tertiary" label={expanded ? BOARD_SHOW_LESS_LABEL : BOARD_SHOW_MORE_LABEL} onClick={() => onToggleExpanded(item)} />
+          <Button size="xs" variant="tertiary" label={expanded ? BOARD_SHOW_LESS_LABEL : BOARD_SHOW_MORE_LABEL} onClick={() => onToggleExpanded(item)} />
         )}
         {isUnavailable(item) && <span className={styles.note}>{BOARD_AUTHOR_OFFLINE}</span>}
       </div>

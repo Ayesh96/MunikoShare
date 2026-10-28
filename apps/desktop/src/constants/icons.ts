@@ -1,7 +1,8 @@
 export const ICON_SIZE = 20;
 export const ICON_STROKE = 1.5;
+export const ICON_COMPACT_SIZE = 16;
 export const EMPTY_ICON_SIZE = 32;
-export const ICON_TILE_SIZE = 40;
+export const ICON_TILE_SIZE = 32;
 
 export type IconName =
   | "nearby"

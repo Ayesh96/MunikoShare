@@ -1,4 +1,4 @@
-import type { IconName } from "../../constants/icons";
+import { ICON_COMPACT_SIZE, type IconName } from "../../constants/icons";
 import styles from "./Button.module.css";
 import { Icon } from "./Icon";
 
@@ -9,7 +9,7 @@ export interface ButtonProps {
   onClick: () => void;
   icon?: IconName;
   variant?: ButtonVariant;
-  size?: "sm" | "md";
+  size?: "xs" | "sm" | "md";
   disabled?: boolean;
   title?: string;
   /** Show only the icon; the label becomes the accessible name and tooltip. */
@@ -26,7 +26,7 @@ export function Button({ label, onClick, icon, variant = "primary", size = "md",
       title={iconOnly ? label : title}
       aria-label={iconOnly ? label : undefined}
     >
-      {icon && <Icon name={icon} />}
+      {icon && <Icon name={icon} size={size === "xs" ? ICON_COMPACT_SIZE : undefined} />}
       {!iconOnly && label}
     </button>
   );

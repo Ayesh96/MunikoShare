@@ -23,15 +23,15 @@ export function ClipboardTab({ nameOf, show, onOpenSettings }: ClipboardTabProps
   const board = useBoard(show);
   const history = useClipboardHistory(show);
   const shared = board.state?.items.filter((item) => item.kind.type === "text" || isImageItem(item)) ?? [];
-  const [draftImage, setDraftImage] = useState<Blob | null>(null);
-  useImagePaste((image) => board.state?.board && setDraftImage(image));
+  const [draftImages, setDraftImages] = useState<Blob[]>([]);
+  useImagePaste((image) => board.state?.board && setDraftImages((current) => [...current, image]));
 
   return (
     <>
       <BoardGate state={board.state} onOpenSettings={onOpenSettings}>
         <ShareCard
-          image={draftImage}
-          onRemoveImage={() => setDraftImage(null)}
+          images={draftImages}
+          onRemoveImage={(image) => setDraftImages((current) => current.filter((staged) => staged !== image))}
           onShareImage={board.postImage}
           onShareText={board.postText}
         />

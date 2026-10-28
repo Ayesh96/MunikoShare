@@ -1,0 +1,4 @@
+.tile { position: relative; aspect-ratio: 1; border-radius: var(--radius-sm); background: var(--color-badge-bg); overflow: hidden; }
+.image { display: block; width: 100%; height: 100%; object-fit: cover; }
+.remove { position: absolute; top: var(--space-xs); right: var(--space-xs); display: flex; background: var(--color-overlay-bar); border-radius: var(--radius-sm); backdrop-filter: blur(var(--size-overlay-blur)); }
+.remove button { min-height: 0; min-width: 0; }
