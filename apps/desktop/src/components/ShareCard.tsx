@@ -17,6 +17,8 @@ export interface ShareCardProps {
 /** Draft area: pasted images and typed text are shared only when Share is pressed. */
 export function ShareCard({ images, onRemoveImage, onShareImage, onShareText }: ShareCardProps) {
   const [text, setText] = useState("");
+  // A fresh textarea after sharing avoids WebKit leaving the placeholder half painted.
+  const [textKey, setTextKey] = useState(0);
   const hasText = text.trim() !== "";
   const empty = images.length === 0 && !hasText;
 
@@ -25,12 +27,15 @@ export function ShareCard({ images, onRemoveImage, onShareImage, onShareText }: 
       if (!(await onShareImage(image))) return;
       onRemoveImage(image);
     }
-    if (hasText && (await onShareText(text))) setText("");
+    if (hasText && (await onShareText(text))) {
+      setText("");
+      setTextKey((key) => key + 1);
+    }
   }
 
   return (
     <Card title={CLIPBOARD_SHARE_TITLE}>
-      <TextArea value={text} onChange={setText} placeholder={CLIPBOARD_SHARE_PLACEHOLDER} rows={3} onSubmit={share} />
+      <TextArea key={textKey} value={text} onChange={setText} placeholder={CLIPBOARD_SHARE_PLACEHOLDER} rows={3} onSubmit={share} />
       {images.length > 0 && (
         <div className={styles.grid}>
           {images.map((image) => (
