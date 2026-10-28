@@ -33,6 +33,7 @@ export const HISTORY_EMPTY_ICON: IconName = "history";
 export const CLIPBOARD_EMPTY_ICON: IconName = "clipboard";
 export const BOARD_SHARE_FILES_ICON: IconName = "sendFiles";
 export const CLIPBOARD_SHARE_ICON: IconName = "send";
+export const CLIPBOARD_REMOVE_IMAGE_ICON: IconName = "close";
 export const DEVICE_OPTIONS_ICON: IconName = "settings";
 export const TAB_CLIPBOARD_ICON: IconName = "clipboard";
 export const TAB_FILES_ICON: IconName = "board";

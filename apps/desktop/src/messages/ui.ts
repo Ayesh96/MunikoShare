@@ -91,7 +91,7 @@ export const CLIPBOARD_SYNC_HINT =
   "Clipboard sync is automatic both ways, but only when it is turned on on both devices.";
 
 export const CLIPBOARD_SHARE_TITLE = "Share to everyone";
-export const CLIPBOARD_SHARE_PLACEHOLDER = "Paste or type text. Everyone on the network can copy it. Pasted images wait here until you press Share.";
+export const CLIPBOARD_SHARE_PLACEHOLDER = "Paste or type here";
 export const CLIPBOARD_SHARE_LABEL = "Share";
 export const CLIPBOARD_SHARE_REMOVE_IMAGE_LABEL = "Remove";
 export const CLIPBOARD_SHARE_IMAGE_ALT = "Image ready to share";

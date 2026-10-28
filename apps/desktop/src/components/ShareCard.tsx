@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { CLIPBOARD_SHARE_ICON } from "../constants/icons";
+import { CLIPBOARD_REMOVE_IMAGE_ICON, CLIPBOARD_SHARE_ICON } from "../constants/icons";
 import { useObjectUrl } from "../hooks/useObjectUrl";
 import {
   CLIPBOARD_SHARE_IMAGE_ALT,
@@ -40,7 +40,7 @@ export function ShareCard({ image, onRemoveImage, onShareImage, onShareText }: S
       {previewUrl && (
         <div className={styles.draftImage}>
           <img className={styles.preview} src={previewUrl} alt={CLIPBOARD_SHARE_IMAGE_ALT} />
-          <Button variant="tertiary" size="sm" label={CLIPBOARD_SHARE_REMOVE_IMAGE_LABEL} onClick={onRemoveImage} />
+          <Button variant="tertiary" size="sm" iconOnly icon={CLIPBOARD_REMOVE_IMAGE_ICON} label={CLIPBOARD_SHARE_REMOVE_IMAGE_LABEL} onClick={onRemoveImage} />
         </div>
       )}
       <div className={styles.buttons}>
