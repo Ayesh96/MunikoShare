@@ -6,12 +6,10 @@ import styles from "./ClipboardThumbnail.module.css";
 
 export interface ClipboardThumbnailProps {
   id: string;
-  width: number;
-  height: number;
 }
 
-/** Loads the image data only when the row is rendered; width and height reserve the space. */
-export function ClipboardThumbnail({ id, width, height }: ClipboardThumbnailProps) {
+/** Loads the image data only when the row is rendered; it fills its parent tile. */
+export function ClipboardThumbnail({ id }: ClipboardThumbnailProps) {
   const [src, setSrc] = useState<string | null>(null);
 
   useEffect(() => {
@@ -24,5 +22,5 @@ export function ClipboardThumbnail({ id, width, height }: ClipboardThumbnailProp
     };
   }, [id]);
 
-  return <img className={styles.image} src={src ?? undefined} width={width} height={height} alt={IMAGE_ALT} />;
+  return <img className={styles.image} src={src ?? undefined} alt={IMAGE_ALT} />;
 }

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <mask id="gaps">
+      <rect width="64" height="64" fill="#fff"/>
+      <circle cx="32" cy="10" r="10" fill="#000"/>
+      <circle cx="11.2" cy="46" r="10" fill="#000"/>
+      <circle cx="52.8" cy="46" r="10" fill="#000"/>
+    </mask>
+  </defs>
+  <circle cx="32" cy="34" r="24" fill="none" stroke="#1f9e86" stroke-width="4" mask="url(#gaps)"/>
+  <circle cx="32" cy="10" r="6.5" fill="#1f9e86"/>
+  <circle cx="11.2" cy="46" r="6.5" fill="#1f9e86"/>
+  <circle cx="52.8" cy="46" r="6.5" fill="#1f9e86"/>
+  <path d="M19 27.5a3 3 0 0 1 3-3h6.5l3 3h11.5a2.5 2.5 0 0 1 2.5 2.5v12a2.5 2.5 0 0 1-2.5 2.5h-21.5a2.5 2.5 0 0 1-2.5-2.5z" fill="#1f9e86"/>
+</svg>

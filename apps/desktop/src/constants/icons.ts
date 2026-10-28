@@ -12,6 +12,7 @@ export type IconName =
   | "history"
   | "phone"
   | "pin"
+  | "unpin"
   | "board"
   | "close"
   | "settings"
@@ -39,6 +40,11 @@ export const CLIPBOARD_EMPTY_ICON: IconName = "clipboard";
 export const BOARD_SHARE_FILES_ICON: IconName = "sendFiles";
 export const CLIPBOARD_SHARE_ICON: IconName = "send";
 export const CLIPBOARD_REMOVE_IMAGE_ICON: IconName = "close";
+export const CLIPBOARD_COPY_ICON: IconName = "copy";
+export const CLIPBOARD_PIN_ICON: IconName = "pin";
+export const CLIPBOARD_UNPIN_ICON: IconName = "unpin";
+export const CLIPBOARD_CLEAR_ICON: IconName = "trash";
+export const CLIPBOARD_TEXT_ROW_ICON: IconName = "text";
 export const DEVICE_OPTIONS_ICON: IconName = "settings";
 export const TAB_CLIPBOARD_ICON: IconName = "clipboard";
 export const TAB_FILES_ICON: IconName = "board";

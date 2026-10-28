@@ -105,7 +105,6 @@ export const CLEAR_CLIPBOARD_LABEL = "Clear";
 export const COPY_LABEL = "Copy";
 export const PIN_LABEL = "Pin";
 export const UNPIN_LABEL = "Unpin";
-export const PINNED_LABEL = "Pinned";
 export const SOURCE_THIS_DEVICE = "This device";
 export const IMAGE_ALT = "Clipboard image";
 export const clipboardTextLength = (length: number) => `${length} characters`;

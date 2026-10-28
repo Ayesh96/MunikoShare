@@ -1,2 +1,1 @@
-.image { display: block; max-width: var(--size-thumbnail); height: auto; border-radius: var(--radius-sm); background: var(--color-badge-bg); }
-.board { display: block; width: 100%; height: 100%; object-fit: cover; background: var(--color-badge-bg); }
+.image, .board { display: block; width: 100%; height: 100%; object-fit: cover; background: var(--color-badge-bg); }

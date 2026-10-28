@@ -1,1 +1,8 @@
-.actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: var(--space-sm); }
+.list { list-style: none; margin: 0; padding: 0; }
+.row { display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm) 0; border-top: var(--border-hairline) solid var(--color-border); }
+.row:first-child { border-top: none; }
+.tile { flex: none; display: grid; place-items: center; width: var(--size-row-tile); height: var(--size-row-tile); overflow: hidden; border-radius: var(--radius-sm); background: var(--color-badge-bg); color: var(--color-text-muted); }
+.text { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; }
+.title, .subtitle { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.subtitle { color: var(--color-text-muted); font-size: var(--font-size-caption); }
+.actions { flex: none; display: flex; align-items: center; gap: var(--space-xs); }
