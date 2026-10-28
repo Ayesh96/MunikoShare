@@ -18,5 +18,5 @@ export function BoardImageThumbnail({ itemId }: { itemId: string }) {
     };
   }, [itemId]);
 
-  return <img className={styles.image} src={src ?? undefined} alt={BOARD_IMAGE_ALT} />;
+  return <img className={styles.board} src={src ?? undefined} alt={BOARD_IMAGE_ALT} />;
 }

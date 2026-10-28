@@ -1,0 +1,3 @@
+.buttons { display: flex; justify-content: flex-end; margin-top: var(--space-sm); }
+.draftImage { display: flex; align-items: flex-start; gap: var(--space-md); margin-top: var(--space-sm); }
+.preview { display: block; max-width: var(--size-draft-preview); max-height: var(--size-draft-preview); border-radius: var(--radius-sm); background: var(--color-badge-bg); }

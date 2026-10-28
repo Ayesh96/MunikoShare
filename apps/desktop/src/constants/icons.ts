@@ -13,7 +13,12 @@ export type IconName =
   | "board"
   | "close"
   | "settings"
-  | "send";
+  | "send"
+  | "copy"
+  | "download"
+  | "trash"
+  | "expand"
+  | "collapse";
 
 export const NEARBY_EMPTY_ICON: IconName = "nearby";
 export const SEND_TO_EMPTY_ICON: IconName = "nearby";

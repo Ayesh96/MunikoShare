@@ -32,6 +32,9 @@ export const QR_MARGIN_MODULES = 1;
 /** Text items longer than this collapse behind "Show more". */
 export const BOARD_TEXT_COLLAPSE_LENGTH = 160;
 
+/** Name prefix of images pasted from the clipboard; pastedImageName builds names from it. */
+export const PASTED_IMAGE_PREFIX = "Clipboard image ";
+
 /** Mirrors the desktop shell's IMAGE_NAME_HEADER; the request body is the raw PNG. */
 export const IMAGE_NAME_HEADER = "x-file-name";
 export const PNG_MIME = "image/png";

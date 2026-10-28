@@ -1,1 +1,2 @@
 .image { display: block; max-width: var(--size-thumbnail); height: auto; border-radius: var(--radius-sm); background: var(--color-badge-bg); }
+.board { display: block; max-width: min(100%, var(--size-image-preview)); height: auto; border-radius: var(--radius-md); background: var(--color-badge-bg); }

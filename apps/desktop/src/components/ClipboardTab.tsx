@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { CLIPBOARD_EMPTY_ICON } from "../constants/icons";
 import { useBoard } from "../hooks/useBoard";
 import { useClipboardHistory } from "../hooks/useClipboardHistory";
@@ -8,7 +10,7 @@ import type { Tone } from "../types/ui";
 import { BoardFeed } from "./BoardFeed";
 import { BoardGate } from "./BoardGate";
 import { ClipboardHistoryCard } from "./ClipboardHistoryCard";
-import { ShareTextCard } from "./ShareTextCard";
+import { ShareCard } from "./ShareCard";
 
 export interface ClipboardTabProps {
   nameOf: (deviceId: string) => string;
@@ -21,12 +23,18 @@ export function ClipboardTab({ nameOf, show, onOpenSettings }: ClipboardTabProps
   const board = useBoard(show);
   const history = useClipboardHistory(show);
   const shared = board.state?.items.filter((item) => item.kind.type === "text" || isImageItem(item)) ?? [];
-  useImagePaste((image) => board.state?.board && board.postImage(image));
+  const [draftImage, setDraftImage] = useState<Blob | null>(null);
+  useImagePaste((image) => board.state?.board && setDraftImage(image));
 
   return (
     <>
       <BoardGate state={board.state} onOpenSettings={onOpenSettings}>
-        <ShareTextCard onShare={board.postText} />
+        <ShareCard
+          image={draftImage}
+          onRemoveImage={() => setDraftImage(null)}
+          onShareImage={board.postImage}
+          onShareText={board.postText}
+        />
         <BoardFeed
           title={CLIPBOARD_SHARED_TITLE}
           emptyTitle={CLIPBOARD_SHARED_EMPTY_TITLE}

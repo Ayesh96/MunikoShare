@@ -12,19 +12,22 @@ export interface ButtonProps {
   size?: "sm" | "md";
   disabled?: boolean;
   title?: string;
+  /** Show only the icon; the label becomes the accessible name and tooltip. */
+  iconOnly?: boolean;
 }
 
-export function Button({ label, onClick, icon, variant = "primary", size = "md", disabled, title }: ButtonProps) {
+export function Button({ label, onClick, icon, variant = "primary", size = "md", disabled, title, iconOnly }: ButtonProps) {
   return (
     <button
       type="button"
-      className={`${styles.button} ${styles[variant]} ${styles[size]}`}
+      className={`${styles.button} ${styles[variant]} ${styles[size]}${iconOnly ? ` ${styles.iconOnly}` : ""}`}
       onClick={onClick}
       disabled={disabled}
-      title={title}
+      title={iconOnly ? label : title}
+      aria-label={iconOnly ? label : undefined}
     >
       {icon && <Icon name={icon} />}
-      {label}
+      {!iconOnly && label}
     </button>
   );
 }

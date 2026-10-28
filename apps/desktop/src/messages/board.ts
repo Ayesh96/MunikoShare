@@ -1,8 +1,9 @@
+import { PASTED_IMAGE_PREFIX } from "../constants/board";
+
 export const TAB_BOARD_LABEL = "Files";
 
 export const BOARD_MODE_OPEN = "Open";
 export const BOARD_MODE_PROTECTED = "Protected";
-export const BOARD_SAVED_BADGE = "Saved on this device";
 export const BOARD_AUTHOR_OFFLINE = "Author offline";
 export const BOARD_YOU = "You";
 
@@ -23,7 +24,8 @@ export const BOARD_COPIED = "Copied to the clipboard";
 export const BOARD_IMAGE_COPIED = "Image copied to the clipboard";
 export const BOARD_IMAGE_SHARED = "Image shared with everyone";
 export const BOARD_IMAGE_ALT = "Shared image";
-export const pastedImageName = (stamp: string) => `Clipboard image ${stamp}.png`;
+export const BOARD_IMAGE_TITLE = "Image";
+export const pastedImageName = (stamp: string) => `${PASTED_IMAGE_PREFIX}${stamp}.png`;
 
 export const BOARD_SETTINGS_TITLE = "Shared board";
 export const BOARD_SETTINGS_HINT = "The board that File Sharing posts to. Devices on the same board see each other's posts and files.";

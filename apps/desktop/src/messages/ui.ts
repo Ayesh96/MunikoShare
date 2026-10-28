@@ -91,8 +91,10 @@ export const CLIPBOARD_SYNC_HINT =
   "Clipboard sync is automatic both ways, but only when it is turned on on both devices.";
 
 export const CLIPBOARD_SHARE_TITLE = "Share to everyone";
-export const CLIPBOARD_SHARE_PLACEHOLDER = "Paste or type text. Everyone on the network can copy it. Paste an image to share it right away.";
+export const CLIPBOARD_SHARE_PLACEHOLDER = "Paste or type text. Everyone on the network can copy it. Pasted images wait here until you press Share.";
 export const CLIPBOARD_SHARE_LABEL = "Share";
+export const CLIPBOARD_SHARE_REMOVE_IMAGE_LABEL = "Remove";
+export const CLIPBOARD_SHARE_IMAGE_ALT = "Image ready to share";
 export const CLIPBOARD_SHARED_TITLE = "Shared clipboard";
 export const CLIPBOARD_SHARED_EMPTY_TITLE = "Nothing shared yet";
 export const CLIPBOARD_SHARED_EMPTY_HINT = "Text and images anyone on the network shares show up here, ready to copy.";
