@@ -8,6 +8,7 @@ CLAUDE.md
 
 # Docs and AI instructions
 *.md
+!/README.md
 .claude/
 AGENTS.md
 .cursor/
